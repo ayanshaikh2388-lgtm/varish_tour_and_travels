@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel | Varish Tour & Travels</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* ── ADMIN PANEL STYLES ── */
+    :root {
+      --gold: #D4AF6A;
+      --gold-light: #F0D08A;
+      --gold-dark: #A07840;
+      --bg: #080B12;
+      --bg-2: #0D1220;
+      --bg-3: #111827;
+      --bg-card: #141B2D;
+      --bg-card-2: #1A2235;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-gold: rgba(212, 175, 106, 0.2);
+      --text: #E8E6E0;
+      --text-muted: #8A8FA8;
+      --white: #FFFFFF;
+      --green: #22c55e;
+      --red: #ef4444;
+      --blue: #3b82f6;
+      --radius: 12px;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-2); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 4px; }
+
+    /* ── LAYOUT ── */
+    .admin-wrapper {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: 260px;
+      background: var(--bg-2);
+      border-right: 1px solid var(--border);
+      padding: 24px 0;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      z-index: 100;
+      transition: transform 0.3s var(--ease);
+    }
+    .sidebar-brand {
+      display: flex; align-items: center; gap: 12px;
+      padding: 0 24px; margin-bottom: 8px;
+    }
+    .sidebar-brand-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      color: var(--bg); font-weight: 900; font-size: 18px;
+    }
+    .sidebar-brand-text {
+      display: flex; flex-direction: column;
+    }
+    .sidebar-brand-name {
+      font-size: 16px; font-weight: 800; color: var(--white);
+    }
+    .sidebar-brand-sub {
+      font-size: 10px; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .sidebar-divider {
+      height: 1px; background: var(--border); margin: 16px 24px;
+    }
+    .sidebar-nav {
+      display: flex; flex-direction: column; gap: 2px;
+      padding: 0 12px; flex: 1;
+    }
+    .sidebar-link {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 16px; border-radius: 10px;
+      font-size: 14px; font-weight: 500; color: var(--text-muted);
+      cursor: pointer; transition: all 0.2s var(--ease);
+      border: none; background: none; text-align: left; width: 100%;
+    }
+    .sidebar-link:hover {
+      background: rgba(255,255,255,0.04); color: var(--text);
+    }
+    .sidebar-link.active {
+      background: rgba(212,175,106,0.1); color: var(--gold);
+      border: 1px solid var(--border-gold);
+    }
+    .sidebar-link svg {
+      width: 18px; height: 18px; flex-shrink: 0; opacity: 0.7;
+    }
+    .sidebar-link.active svg { opacity: 1; }
+    .sidebar-link .link-badge {
+      margin-left: auto;
+      background: rgba(212,175,106,0.15);
+      color: var(--gold);
+      font-size: 11px; font-weight: 700;
+      padding: 2px 8px; border-radius: 20px;
+    }
+
+    .sidebar-bottom {
+      padding: 16px 24px; border-top: 1px solid var(--border);
+    }
+    .sidebar-bottom a {
+      display: flex; align-items: center; gap: 10px;
+      color: var(--text-muted); font-size: 13px; font-weight: 500;
+      text-decoration: none; padding: 8px 0;
+      transition: color 0.2s;
+    }
+    .sidebar-bottom a:hover { color: var(--gold); }
+
+    /* ── MAIN CONTENT ── */
+    .main-content {
+      margin-left: 260px;
+      flex: 1;
+      padding: 32px 40px;
+      min-height: 100vh;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 32px; flex-wrap: wrap; gap: 16px;
+    }
+    .page-header h1 {
+      font-size: 28px; font-weight: 800; color: var(--white);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .page-header h1 span {
+      font-size: 13px; font-weight: 600; color: var(--gold);
+      background: rgba(212,175,106,0.1);
+      padding: 4px 14px; border-radius: 20px;
+      border: 1px solid var(--border-gold);
+    }
+    .page-desc {
+      font-size: 14px; color: var(--text-muted); margin-top: 6px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 10px;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      border: none; transition: all 0.2s var(--ease);
+      font-family: inherit;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: var(--bg);
+      box-shadow: 0 4px 16px rgba(212,175,106,0.3);
+    }
+    .btn-gold:hover {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(212,175,106,0.4);
+    }
+    .btn-outline {
+      background: transparent; color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--border-gold); color: var(--gold);
+    }
+    .btn-danger {
+      background: rgba(239,68,68,0.12); color: var(--red);
+      border: 1px solid rgba(239,68,68,0.2);
+    }
+    .btn-danger:hover {
+      background: rgba(239,68,68,0.2); transform: translateY(-1px);
+    }
+    .btn-success {
+      background: rgba(34,197,94,0.12); color: var(--green);
+      border: 1px solid rgba(34,197,94,0.2);
+    }
+    .btn-success:hover {
+      background: rgba(34,197,94,0.2); transform: translateY(-1px);
+    }
+    .btn-sm { padding: 7px 14px; font-size: 12px; border-radius: 8px; }
+
+    /* ── CARDS / PANELS ── */
+    .panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 24px;
+      transition: border-color 0.2s;
+    }
+    .panel:hover { border-color: var(--border-gold); }
+    .panel-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+    }
+    .panel-title {
+      font-size: 17px; font-weight: 700; color: var(--white);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .panel-title .count {
+      font-size: 11px; font-weight: 700; color: var(--gold);
+      background: rgba(212,175,106,0.1);
+      padding: 2px 10px; border-radius: 20px;
+    }
+
+    /* ── FORM ELEMENTS ── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .form-group {
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 14px; color: var(--white);
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s var(--ease);
+      -webkit-appearance: none;
+    }
+    .form-select option { background: var(--bg-card); }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: rgba(212,175,106,0.45);
+      background: rgba(212,175,106,0.04);
+      box-shadow: 0 0 0 3px rgba(212,175,106,0.08);
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: rgba(138,143,168,0.6); }
+    .form-textarea { resize: vertical; min-height: 80px; }
+    .form-hint {
+      font-size: 11px; color: var(--text-muted); margin-top: 2px;
+    }
+
+    /* ── ITEM LIST ── */
+    .item-list {
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .item-card {
+      display: flex; align-items: center; gap: 16px;
+      background: var(--bg-card-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      transition: all 0.2s var(--ease);
+    }
+    .item-card:hover {
+      border-color: var(--border-gold);
+      transform: translateX(4px);
+    }
+    .item-thumb {
+      width: 64px; height: 48px; border-radius: 8px;
+      overflow: hidden; flex-shrink: 0;
+      background: var(--bg-3);
+    }
+    .item-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .item-info { flex: 1; min-width: 0; }
+    .item-name {
+      font-size: 15px; font-weight: 700; color: var(--white);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .item-meta {
+      font-size: 12px; color: var(--text-muted); margin-top: 3px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .item-actions {
+      display: flex; gap: 8px; flex-shrink: 0;
+    }
+
+    /* ── FEATURE LIST (for packages) ── */
+    .feature-list {
+      display: flex; flex-direction: column; gap: 8px;
+      margin-top: 8px;
+    }
+    .feature-item {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 13px; color: var(--text);
+    }
+    .feature-item .f-type {
+      font-size: 10px; font-weight: 700; padding: 2px 8px;
+      border-radius: 20px; flex-shrink: 0;
+    }
+    .feature-item .f-type.inc {
+      background: rgba(34,197,94,0.12); color: var(--green);
+    }
+    .feature-item .f-type.exc {
+      background: rgba(239,68,68,0.1); color: var(--red);
+    }
+    .feature-item .f-text { flex: 1; }
+    .feature-item .f-remove {
+      background: none; border: none; color: var(--text-muted);
+      cursor: pointer; padding: 2px; font-size: 16px;
+      transition: color 0.2s;
+    }
+    .feature-item .f-remove:hover { color: var(--red); }
+
+    .add-feature-row {
+      display: flex; gap: 8px; margin-top: 8px;
+    }
+    .add-feature-row input {
+      flex: 1; background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: 8px 12px; font-size: 13px; color: var(--white);
+      font-family: inherit; outline: none;
+    }
+    .add-feature-row select {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: 8px 10px; font-size: 12px; color: var(--white);
+      font-family: inherit; outline: none;
+    }
+    .add-feature-row select option { background: var(--bg-card); }
+
+    /* ── TABS ── */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ── EDIT FORM (shown after clicking Edit) ── */
+    .edit-form {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 24px;
+      animation: slideDown 0.3s var(--ease);
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .edit-form-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .edit-form-title {
+      font-size: 16px; font-weight: 700; color: var(--gold);
+    }
+    .edit-form-actions {
+      display: flex; gap: 8px; margin-top: 20px;
+    }
+
+    /* ── TOAST ── */
+    .admin-toast {
+      position: fixed; bottom: 28px; right: 28px;
+      background: var(--bg-card); border: 1px solid var(--border-gold);
+      color: var(--white); padding: 14px 24px;
+      border-radius: 14px; font-size: 14px; font-weight: 600;
+      z-index: 99999; opacity: 0; transform: translateY(20px);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      pointer-events: none;
+    }
+    .admin-toast.show {
+      opacity: 1; transform: translateY(0); pointer-events: all;
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      text-align: center; padding: 48px 24px;
+      color: var(--text-muted);
+    }
+    .empty-state svg {
+      margin: 0 auto 16px; opacity: 0.3;
+    }
+    .empty-state p { font-size: 14px; margin-bottom: 16px; }
+
+    /* ── STATS CARDS ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px; margin-bottom: 32px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      transition: all 0.2s;
+    }
+    .stat-card:hover { border-color: var(--border-gold); transform: translateY(-3px); }
+    .stat-card-value {
+      font-size: 32px; font-weight: 800; color: var(--white);
+      margin-bottom: 4px;
+    }
+    .stat-card-label {
+      font-size: 12px; color: var(--text-muted); font-weight: 500;
+    }
+
+    /* ── MOBILE TOGGLE ── */
+    .mobile-menu-btn {
+      display: none;
+      position: fixed; top: 16px; left: 16px; z-index: 200;
+      width: 42px; height: 42px; border-radius: 10px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      color: var(--text); cursor: pointer;
+      align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6); z-index: 90;
+    }
+    .overlay.show { display: block; }
+
+    /* ── COLOR PREVIEW ── */
+    .color-preview-row {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .color-preview {
+      width: 40px; height: 40px; border-radius: 8px;
+      border: 2px solid var(--border); flex-shrink: 0;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .main-content { margin-left: 0; padding: 24px 16px; padding-top: 68px; }
+      .mobile-menu-btn { display: flex; }
+      .form-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .stats-row { grid-template-columns: 1fr; }
+      .item-card { flex-direction: column; align-items: flex-start; }
+      .item-actions { align-self: flex-end; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Mobile menu button -->
+  <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleSidebar()">☰</button>
+  <div class="overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <div class="admin-wrapper">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">V</div>
+        <div class="sidebar-brand-text">
+          <span class="sidebar-brand-name">Admin Panel</span>
+          <span class="sidebar-brand-sub">Varish Travels</span>
+        </div>
+      </div>
+
+      <div class="sidebar-divider"></div>
+
+      <nav class="sidebar-nav">
+        <button class="sidebar-link active" onclick="showTab('dashboard', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Dashboard
+        </button>
+        <button class="sidebar-link" onclick="showTab('hero', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Hero Section
+        </button>
+        <button class="sidebar-link" onclick="showTab('destinations', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Destinations
+          <span class="link-badge" id="destCount">4</span>
+        </button>
+        <button class="sidebar-link" onclick="showTab('packages', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 01-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 000 4h4v-4h-4z"/></svg>
+          Packages
+          <span class="link-badge" id="pkgCount">3</span>
+        </button>
+        <button class="sidebar-link" onclick="showTab('reviews', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Reviews
+          <span class="link-badge" id="revCount">3</span>
+        </button>
+        <button class="sidebar-link" onclick="showTab('about', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          About Section
+        </button>
+        <button class="sidebar-link" onclick="showTab('contact', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.37 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012.28 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Contact Info
+        </button>
+        <button class="sidebar-link" onclick="showTab('company', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Company Info
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a href="index.html" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View Website →
+        </a>
+      </div>
+    </aside>
+
+    <!-- ── MAIN CONTENT ── -->
+    <main class="main-content">
+
+      <!-- ═══ DASHBOARD TAB ═══ -->
+      <div class="tab-content active" id="tab-dashboard">
+        <div class="page-header">
+          <div>
+            <h1>Dashboard <span>Admin Panel</span></h1>
+            <p class="page-desc">Website ka poora content yahan se manage karein — A to Z sab kuch editable hai</p>
+          </div>
+        </div>
+
+        <div class="stats-row" id="dashboardStats"></div>
+
+        <div class="panel">
+          <div class="panel-title" style="margin-bottom:16px">📋 Quick Guide — Kaise Use Karein?</div>
+          <div style="color: var(--text-muted); font-size: 14px; line-height: 1.85;">
+            <p><strong style="color:var(--white)">1.</strong> Left side mein sidebar se koi bhi section choose karein (Destinations, Packages, etc.)</p>
+            <p><strong style="color:var(--white)">2.</strong> <strong style="color:var(--green)">+ Add New</strong> button se naya item add karein</p>
+            <p><strong style="color:var(--white)">3.</strong> <strong style="color:var(--blue)">✏ Edit</strong> button se existing item edit karein</p>
+            <p><strong style="color:var(--white)">4.</strong> <strong style="color:var(--red)">🗑 Delete</strong> button se item remove karein</p>
+            <p><strong style="color:var(--white)">5.</strong> Sab changes automatically save hote hain — bas website refresh karein to changes dikhein</p>
+            <p style="margin-top:12px; padding: 12px 16px; background: rgba(212,175,106,0.08); border: 1px solid var(--border-gold); border-radius: 10px;">
+              <strong style="color:var(--gold)">💡 Tip:</strong> Images ke liye URL paste karein. Aap free image hosting jaise <strong style="color:var(--white)">imgbb.com</strong> ya <strong style="color:var(--white)">imgur.com</strong> use kar sakte hain.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ HERO TAB ═══ -->
+      <div class="tab-content" id="tab-hero">
+        <div class="page-header">
+          <div>
+            <h1>Hero Section</h1>
+            <p class="page-desc">Website ka main landing section — title, description, badge aur stats</p>
+          </div>
+          <button class="btn btn-gold" onclick="saveHero()">💾 Save Changes</button>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Hero Content</div>
+          <div class="form-grid" style="margin-top:16px">
+            <div class="form-group full">
+              <label class="form-label">Welcome Text</label>
+              <input class="form-input" id="hero-welcomeText" placeholder="e.g. Welcome to Varish Tour & Travels" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Badge Text</label>
+              <input class="form-input" id="hero-badge" placeholder="e.g. India's Premium Travel Partner" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Hero Image URL</label>
+              <input class="form-input" id="hero-bgImg" placeholder="hero-bg.jpg or full URL" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Title Line 1 (Italic)</label>
+              <input class="form-input" id="hero-titleLine1" placeholder="e.g. Extraordinary" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Title Line 2</label>
+              <input class="form-input" id="hero-titleLine2" placeholder="e.g. Journeys Across" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Title Line 3 (Bold)</label>
+              <input class="form-input" id="hero-titleLine3" placeholder="e.g. Incredible India" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Description</label>
+              <textarea class="form-textarea" id="hero-desc" placeholder="Short description for hero section"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Hero Stats</div>
+          <div class="form-grid" style="margin-top:16px">
+            <div class="form-group">
+              <label class="form-label">Stat 1 Value</label>
+              <input class="form-input" id="hero-stat1val" placeholder="e.g. 5000+" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Stat 1 Label</label>
+              <input class="form-input" id="hero-stat1label" placeholder="e.g. Happy Travelers" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Stat 2 Value</label>
+              <input class="form-input" id="hero-stat2val" placeholder="e.g. 50+" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Stat 2 Label</label>
+              <input class="form-input" id="hero-stat2label" placeholder="e.g. Destinations" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Stat 3 Value</label>
+              <input class="form-input" id="hero-stat3val" placeholder="e.g. 29+" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Stat 3 Label</label>
+              <input class="form-input" id="hero-stat3label" placeholder="e.g. Years Experience" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ DESTINATIONS TAB ═══ -->
+      <div class="tab-content" id="tab-destinations">
+        <div class="page-header">
+          <div>
+            <h1>Destinations</h1>
+            <p class="page-desc">Travel destinations add, edit ya delete karein</p>
+          </div>
+          <button class="btn btn-gold" onclick="showDestForm()">+ Add Destination</button>
+        </div>
+
+        <div id="destEditArea"></div>
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">All Destinations <span class="count" id="destListCount">0</span></div>
+          </div>
+          <div class="item-list" id="destList"></div>
+        </div>
+      </div>
+
+      <!-- ═══ PACKAGES TAB ═══ -->
+      <div class="tab-content" id="tab-packages">
+        <div class="page-header">
+          <div>
+            <h1>Tour Packages</h1>
+            <p class="page-desc">Tour packages add, edit ya delete karein — price, features sab set karein</p>
+          </div>
+          <button class="btn btn-gold" onclick="showPkgForm()">+ Add Package</button>
+        </div>
+
+        <div id="pkgEditArea"></div>
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">All Packages <span class="count" id="pkgListCount">0</span></div>
+          </div>
+          <div class="item-list" id="pkgList"></div>
+        </div>
+      </div>
+
+      <!-- ═══ REVIEWS TAB ═══ -->
+      <div class="tab-content" id="tab-reviews">
+        <div class="page-header">
+          <div>
+            <h1>Reviews / Testimonials</h1>
+            <p class="page-desc">Customer reviews add ya edit karein</p>
+          </div>
+          <button class="btn btn-gold" onclick="showRevForm()">+ Add Review</button>
+        </div>
+
+        <div id="revEditArea"></div>
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">All Reviews <span class="count" id="revListCount">0</span></div>
+          </div>
+          <div class="item-list" id="revList"></div>
+        </div>
+      </div>
+
+      <!-- ═══ ABOUT TAB ═══ -->
+      <div class="tab-content" id="tab-about">
+        <div class="page-header">
+          <div>
+            <h1>About Section</h1>
+            <p class="page-desc">About us section ka content edit karein — heading, description, why-us cards</p>
+          </div>
+          <button class="btn btn-gold" onclick="saveAbout()">💾 Save Changes</button>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">About Content</div>
+          <div class="form-grid" style="margin-top:16px">
+            <div class="form-group full">
+              <label class="form-label">Section Title (HTML allowed)</label>
+              <input class="form-input" id="about-title" placeholder='e.g. We Don&#39;t Just Plan Trips.<br><em>We Create Memories.</em>' />
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Description</label>
+              <textarea class="form-textarea" id="about-desc" placeholder="About section description"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Image 1 URL (Main)</label>
+              <input class="form-input" id="about-img1" placeholder="kashmir.jpg or URL" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Image 2 URL (Secondary)</label>
+              <input class="form-input" id="about-img2" placeholder="jaisalmer.jpg or URL" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Rating Badge Value</label>
+              <input class="form-input" id="about-rating" placeholder="e.g. 4.9 ★" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Rating Badge Label</label>
+              <input class="form-input" id="about-ratingLabel" placeholder="e.g. Average Rating" />
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Why-Us Cards (4 cards)</div>
+          <div class="form-grid" style="margin-top:16px">
+            <div class="form-group">
+              <label class="form-label">Card 1 Title</label>
+              <input class="form-input" id="about-why1title" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Card 1 Description</label>
+              <input class="form-input" id="about-why1desc" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Card 2 Title</label>
+              <input class="form-input" id="about-why2title" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Card 2 Description</label>
+              <input class="form-input" id="about-why2desc" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Card 3 Title</label>
+              <input class="form-input" id="about-why3title" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Card 3 Description</label>
+              <input class="form-input" id="about-why3desc" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Card 4 Title</label>
+              <input class="form-input" id="about-why4title" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Card 4 Description</label>
+              <input class="form-input" id="about-why4desc" />
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">About Stats</div>
+          <div class="form-grid" style="margin-top:16px">
+            <div class="form-group">
+              <label class="form-label">Stat 1 Value</label>
+              <input class="form-input" id="about-stat1val" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Stat 1 Label</label>
+              <input class="form-input" id="about-stat1label" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Stat 2 Value</label>
+              <input class="form-input" id="about-stat2val" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Stat 2 Label</label>
+              <input class="form-input" id="about-stat2label" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Stat 3 Value</label>
+              <input class="form-input" id="about-stat3val" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Stat 3 Label</label>
+              <input class="form-input" id="about-stat3label" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ CONTACT TAB ═══ -->
+      <div class="tab-content" id="tab-contact">
+        <div class="page-header">
+          <div>
+            <h1>Contact Information</h1>
+            <p class="page-desc">Phone, email, address, WhatsApp number — sab yahan se change karein</p>
+          </div>
+          <button class="btn btn-gold" onclick="saveContact()">💾 Save Changes</button>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Contact Details</div>
+          <div class="form-grid" style="margin-top:16px">
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <input class="form-input" id="contact-phone" placeholder="+91 98989 89097" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">WhatsApp Number</label>
+              <input class="form-input" id="contact-whatsapp" placeholder="919898989097" />
+              <span class="form-hint">Country code ke saath, bina + sign ke (e.g. 919898989097)</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input class="form-input" id="contact-email" placeholder="info@varishtravels.com" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Office Address</label>
+              <input class="form-input" id="contact-address" placeholder="Gujarat, India" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Office Hours</label>
+              <input class="form-input" id="contact-hours" placeholder="Mon–Sat: 9AM–7PM" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ COMPANY TAB ═══ -->
+      <div class="tab-content" id="tab-company">
+        <div class="page-header">
+          <div>
+            <h1>Company Info</h1>
+            <p class="page-desc">Brand name, tagline, footer text, social media links</p>
+          </div>
+          <button class="btn btn-gold" onclick="saveCompany()">💾 Save Changes</button>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Brand Identity</div>
+          <div class="form-grid" style="margin-top:16px">
+            <div class="form-group">
+              <label class="form-label">Brand Name</label>
+              <input class="form-input" id="company-brand" placeholder="Varish" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Subtitle</label>
+              <input class="form-input" id="company-subtitle" placeholder="Tour & Travels" />
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Footer Tagline</label>
+              <input class="form-input" id="company-tagline" placeholder="Crafting extraordinary travel experiences..." />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Copyright Text</label>
+              <input class="form-input" id="company-copyright" placeholder="© 2024 Varish Tour & Travels. All rights reserved." />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Footer Bottom Text</label>
+              <input class="form-input" id="company-footerBottom" placeholder="Made with ❤️ in Gujarat, India" />
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Social Media Links</div>
+          <div class="form-grid" style="margin-top:16px">
+            <div class="form-group">
+              <label class="form-label">Facebook URL</label>
+              <input class="form-input" id="company-facebook" placeholder="https://facebook.com/..." />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Instagram URL</label>
+              <input class="form-input" id="company-instagram" placeholder="https://instagram.com/..." />
+            </div>
+            <div class="form-group">
+              <label class="form-label">YouTube URL</label>
+              <input class="form-input" id="company-youtube" placeholder="https://youtube.com/..." />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Toast -->
+  <div class="admin-toast" id="adminToast"></div>
+
+  <script>
+    'use strict';
+
+    // ──────────────────────────────────────────
+    // DEFAULT DATA
+    // ──────────────────────────────────────────
+    const DEFAULT_DATA = {
+      hero: {
+        welcomeText: "Welcome to Varish Tour & Travels",
+        badge: "India's Premium Travel Partner",
+        bgImg: "hero-bg.jpg",
+        titleLine1: "Extraordinary",
+        titleLine2: "Journeys Across",
+        titleLine3: "Incredible India",
+        desc: "From snow-draped Kashmir valleys to the golden sands of Jaisalmer — we craft bespoke travel experiences that stay with you forever.",
+        stat1val: "5000+", stat1label: "Happy Travelers",
+        stat2val: "200+", stat2label: "Destinations",
+        stat3val: "29+", stat3label: "Years Experience"
+      },
+      destinations: [
+        { id: 'd1', name: 'Kashmir', img: 'kashmir.jpg', tag: '⭐ Most Popular', tagType: 'featured', rating: '4.9', highlights: 'Dal Lake · Gulmarg · Pahalgam', duration: '5–7 Days', price: '₹18,000' },
+        { id: 'd2', name: 'Jaisalmer', img: 'jaisalmer.jpg', tag: 'Desert', tagType: 'normal', rating: '4.8', highlights: 'Dunes · Fort · Camel Safari', duration: '3–5 Days', price: '₹12,000' },
+        { id: 'd3', name: 'Saputara', img: 'saputara.jpg', tag: 'Hill Station', tagType: 'normal', rating: '4.7', highlights: 'Lake · Waterfalls · Sunrise', duration: '2–3 Days', price: '' },
+        { id: 'd4', name: 'Mount Abu', img: 'mountabu.jpg', tag: 'Nature', tagType: 'normal', rating: '4.8', highlights: 'Nakki Lake · Dilwara Temple · Shikhar', duration: '2–4 Days', price: '' },
+        { id: 'd5', name: 'Simla', img: 'simla.jpg', tag: 'Hill Station', tagType: 'normal', rating: '4.8', highlights: 'Mall Road · Snowfall', duration: '3–5 Days', price: '₹10,000' },
+        { id: 'd6', name: 'Manali', img: 'manali.jpg', tag: 'Adventure', tagType: 'normal', rating: '4.9', highlights: 'Rohtang Pass · Solang Valley', duration: '4–6 Days', price: '₹12,000' },
+        { id: 'd7', name: 'Ajmer', img: 'ajmer.jpg', tag: 'Spiritual', tagType: 'normal', rating: '4.7', highlights: 'Dargah Sharif · Pushkar', duration: '2–3 Days', price: '₹5,000' },
+        { id: 'd8', name: 'Mumbai', img: 'mumbai.jpg', tag: 'City', tagType: 'normal', rating: '4.8', highlights: 'Gateway of India · Marine Drive', duration: '2–4 Days', price: '₹8,000' },
+        { id: 'd9', name: 'Goa', img: 'goa.jpg', tag: 'Beach', tagType: 'normal', rating: '4.9', highlights: 'Beaches · Nightlife', duration: '3–5 Days', price: '₹15,000' },
+        { id: 'd10', name: 'Kerala', img: 'kerala.jpg', tag: 'Nature', tagType: 'normal', rating: '4.9', highlights: 'Backwaters · Munnar', duration: '5–7 Days', price: '₹18,000' },
+        { id: 'd11', name: 'All Over India', img: 'india.jpg', tag: 'Tour', tagType: 'normal', rating: '5.0', highlights: 'Custom Packages Across India', duration: 'Custom', price: 'On Request' }
+      ],
+      packages: [
+        {
+          id: 'p2', tier: 'Premium', name: 'Rajasthan Royal Combo', price: '3,500', duration: '8 Nights · 9 Days',
+          badge: 'Best Value ✦', featured: true,
+          features: [
+            { text: 'Jaisalmer + Mount Abu', type: 'inc' },
+            { text: 'Desert Camp Stay', type: 'inc' },
+            { text: 'Camel Safari at Sunset', type: 'inc' },
+            { text: 'Dilwara Temple Tour', type: 'inc' },
+            { text: 'Cultural Folk Evening', type: 'inc' },
+            { text: 'All Meals Included', type: 'inc' },
+            { text: 'AC Coach Transport', type: 'inc' }
+          ]
+        },
+        {
+          id: 'p3', tier: 'Luxury', name: 'Kashmir Delight', price: '12,500', duration: '6 Nights · 7 Days',
+          badge: '', featured: false,
+          features: [
+            { text: 'Houseboat on Dal Lake', type: 'inc' },
+            { text: 'Gulmarg Gondola Ride', type: 'inc' },
+            { text: 'Pahalgam Valley Tour', type: 'inc' },
+            { text: 'Shikara Ride', type: 'inc' },
+            { text: 'All Meals Included', type: 'inc' },
+            { text: 'AC Cab Transfers', type: 'inc' },
+            { text: 'Airfare (Add-on Available)', type: 'exc' }
+          ]
+        }
+      ],
+      reviews: [
+        { id: 'r1', name: 'Rajesh Patel', city: 'Ahmedabad, Gujarat', quote: 'The Kashmir trip was beyond anything I imagined. The houseboat on Dal Lake, the Gulmarg snow — every single detail was arranged flawlessly by Varish Travels. We\'ll be back!', rating: 5, avatarColor1: '#0c2f4e', avatarColor2: '#3498db', destImg: 'kashmir.jpg' },
+        { id: 'r2', name: 'Priya & Keval Shah', city: 'Surat, Gujarat', quote: 'Jaisalmer desert camp under the stars — priceless. The camel safari at sunset was the highlight of our honeymoon. Varish handled everything perfectly!', rating: 5, avatarColor1: '#4a2000', avatarColor2: '#e8940a', destImg: 'jaisalmer.jpg' },
+        { id: 'r3', name: 'Mehul Desai', city: 'Vadodara, Gujarat', quote: 'Saputara in monsoon is breathtaking and Varish made it even more special. Professional guides, great hotels, and the whole trip was within budget. Highly recommended!', rating: 5, avatarColor1: '#0a2e15', avatarColor2: '#27ae60', destImg: 'saputara.jpg' }
+      ],
+      about: {
+        title: 'We Don\'t Just Plan Trips.<br /><em>We Create Memories.</em>',
+        desc: 'Since 2010, Varish Tour & Travels has been Gujarat\'s most trusted travel company. We believe every journey should be extraordinary — whether it\'s your first trip to the mountains or a royal desert adventure.',
+        img1: 'kashmir.jpg', img2: 'jaisalmer.jpg',
+        rating: '4.9 ★', ratingLabel: 'Average Rating',
+        why1title: '100% Safe & Verified', why1desc: 'All accommodations, guides & vehicles are thoroughly vetted.',
+        why2title: 'Best Price Guarantee', why2desc: 'Transparent pricing with zero hidden charges. We match any quote.',
+        why3title: '24 × 7 Support', why3desc: 'Our experts are always a call away — before, during & after your trip.',
+        why4title: 'Fully Customised', why4desc: 'No two trips are alike. We design every tour around your unique preferences.',
+        stat1val: '5000+', stat1label: 'Happy Travelers',
+        stat2val: '200+', stat2label: 'Destinations',
+        stat3val: '29+', stat3label: 'Years of Trust'
+      },
+      contact: {
+        phone: '+91 98989 89097',
+        whatsapp: '919898989097',
+        email: 'info@varishtravels.com',
+        address: 'Gujarat, India',
+        hours: 'Mon–Sat: 9AM–7PM'
+      },
+      company: {
+        brand: 'Varish',
+        subtitle: 'Tour & Travels',
+        tagline: 'Crafting extraordinary travel experiences across India since 2010. Your journey is our passion.',
+        copyright: '© 2024 Varish Tour & Travels. All rights reserved.',
+        footerBottom: 'Made with ❤️ in Gujarat, India',
+        facebook: '#',
+        instagram: '#',
+        youtube: '#'
+      }
+    };
+
+    // ──────────────────────────────────────────
+    // DATA MANAGEMENT
+    // ──────────────────────────────────────────
+    function getData() {
+      const stored = localStorage.getItem('varish_admin_data');
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          // Merge with defaults for any missing keys
+          return { ...DEFAULT_DATA, ...parsed };
+        } catch(e) {
+          return { ...DEFAULT_DATA };
+        }
+      }
+      return { ...DEFAULT_DATA };
+    }
+
+    function saveData(data) {
+      localStorage.setItem('varish_admin_data', JSON.stringify(data));
+    }
+
+    let data = getData();
+
+    // ──────────────────────────────────────────
+    // TABS
+    // ──────────────────────────────────────────
+    function showTab(tabName, btn) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+      document.getElementById('tab-' + tabName).classList.add('active');
+      if (btn) btn.classList.add('active');
+
+      // Load data for the tab
+      if (tabName === 'dashboard') renderDashboard();
+      else if (tabName === 'hero') loadHero();
+      else if (tabName === 'destinations') renderDests();
+      else if (tabName === 'packages') renderPkgs();
+      else if (tabName === 'reviews') renderRevs();
+      else if (tabName === 'about') loadAbout();
+      else if (tabName === 'contact') loadContact();
+      else if (tabName === 'company') loadCompany();
+
+      // Close mobile sidebar
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('sidebarOverlay').classList.remove('show');
+    }
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebarOverlay').classList.toggle('show');
+    }
+
+    // ──────────────────────────────────────────
+    // TOAST
+    // ──────────────────────────────────────────
+    let toastTimer;
+    function showToast(msg) {
+      const t = document.getElementById('adminToast');
+      clearTimeout(toastTimer);
+      t.textContent = msg;
+      t.classList.add('show');
+      toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    // ──────────────────────────────────────────
+    // DASHBOARD
+    // ──────────────────────────────────────────
+    function renderDashboard() {
+      const d = getData();
+      document.getElementById('dashboardStats').innerHTML = `
+        <div class="stat-card">
+          <div class="stat-card-value">${d.destinations.length}</div>
+          <div class="stat-card-label">Destinations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-value">${d.packages.length}</div>
+          <div class="stat-card-label">Tour Packages</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-value">${d.reviews.length}</div>
+          <div class="stat-card-label">Reviews</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-value">A–Z</div>
+          <div class="stat-card-label">Fully Editable</div>
+        </div>
+      `;
+      updateCounts();
+    }
+
+    function updateCounts() {
+      const d = getData();
+      const dc = document.getElementById('destCount');
+      const pc = document.getElementById('pkgCount');
+      const rc = document.getElementById('revCount');
+      if (dc) dc.textContent = d.destinations.length;
+      if (pc) pc.textContent = d.packages.length;
+      if (rc) rc.textContent = d.reviews.length;
+    }
+
+    // ──────────────────────────────────────────
+    // HERO
+    // ──────────────────────────────────────────
+    function loadHero() {
+      const h = data.hero || DEFAULT_DATA.hero;
+      document.getElementById('hero-welcomeText').value = h.welcomeText || '';
+      document.getElementById('hero-badge').value = h.badge || '';
+      document.getElementById('hero-bgImg').value = h.bgImg || '';
+      document.getElementById('hero-titleLine1').value = h.titleLine1 || '';
+      document.getElementById('hero-titleLine2').value = h.titleLine2 || '';
+      document.getElementById('hero-titleLine3').value = h.titleLine3 || '';
+      document.getElementById('hero-desc').value = h.desc || '';
+      document.getElementById('hero-stat1val').value = h.stat1val || '';
+      document.getElementById('hero-stat1label').value = h.stat1label || '';
+      document.getElementById('hero-stat2val').value = h.stat2val || '';
+      document.getElementById('hero-stat2label').value = h.stat2label || '';
+      document.getElementById('hero-stat3val').value = h.stat3val || '';
+      document.getElementById('hero-stat3label').value = h.stat3label || '';
+    }
+
+    function saveHero() {
+      data.hero = {
+        welcomeText: document.getElementById('hero-welcomeText').value,
+        badge: document.getElementById('hero-badge').value,
+        bgImg: document.getElementById('hero-bgImg').value,
+        titleLine1: document.getElementById('hero-titleLine1').value,
+        titleLine2: document.getElementById('hero-titleLine2').value,
+        titleLine3: document.getElementById('hero-titleLine3').value,
+        desc: document.getElementById('hero-desc').value,
+        stat1val: document.getElementById('hero-stat1val').value,
+        stat1label: document.getElementById('hero-stat1label').value,
+        stat2val: document.getElementById('hero-stat2val').value,
+        stat2label: document.getElementById('hero-stat2label').value,
+        stat3val: document.getElementById('hero-stat3val').value,
+        stat3label: document.getElementById('hero-stat3label').value,
+      };
+      saveData(data);
+      showToast('✅ Hero section saved successfully!');
+    }
+
+    // ──────────────────────────────────────────
+    // DESTINATIONS
+    // ──────────────────────────────────────────
+    let editingDestId = null;
+
+    function renderDests() {
+      const list = document.getElementById('destList');
+      const dests = data.destinations || [];
+      document.getElementById('destListCount').textContent = dests.length;
+
+      if (dests.length === 0) {
+        list.innerHTML = `<div class="empty-state"><p>Koi destination nahi hai. "Add Destination" se add karein.</p></div>`;
+        return;
+      }
+
+      list.innerHTML = dests.map((d, i) => `
+        <div class="item-card">
+          <div class="item-thumb"><img src="${d.img}" alt="${d.name}" onerror="this.style.display='none'" /></div>
+          <div class="item-info">
+            <div class="item-name">${d.name}</div>
+            <div class="item-meta">★ ${d.rating} · ${d.duration} · From ${d.price}</div>
+          </div>
+          <div class="item-actions">
+            <button class="btn btn-outline btn-sm" onclick="editDest(${i})">✏ Edit</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteDest(${i})">🗑</button>
+          </div>
+        </div>
+      `).join('');
+      updateCounts();
+    }
+
+    function showDestForm(dest, index) {
+      editingDestId = index !== undefined ? index : null;
+      const d = dest || { name: '', img: '', tag: '', tagType: 'normal', rating: '', highlights: '', duration: '', price: '' };
+      document.getElementById('destEditArea').innerHTML = `
+        <div class="edit-form">
+          <div class="edit-form-header">
+            <div class="edit-form-title">${editingDestId !== null ? '✏ Edit' : '+ Add'} Destination</div>
+            <button class="btn btn-outline btn-sm" onclick="cancelDestEdit()">✕ Cancel</button>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Destination Name *</label>
+              <input class="form-input" id="df-name" value="${d.name}" placeholder="e.g. Kashmir" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Image URL *</label>
+              <input class="form-input" id="df-img" value="${d.img}" placeholder="kashmir.jpg or full URL" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tag Label</label>
+              <input class="form-input" id="df-tag" value="${d.tag}" placeholder="e.g. Desert, Hill Station" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tag Type</label>
+              <select class="form-select" id="df-tagType">
+                <option value="normal" ${d.tagType === 'normal' ? 'selected' : ''}>Normal</option>
+                <option value="featured" ${d.tagType === 'featured' ? 'selected' : ''}>Featured (Gold)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Rating</label>
+              <input class="form-input" id="df-rating" value="${d.rating}" placeholder="e.g. 4.9" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Highlights</label>
+              <input class="form-input" id="df-highlights" value="${d.highlights}" placeholder="e.g. Dal Lake · Gulmarg" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Duration</label>
+              <input class="form-input" id="df-duration" value="${d.duration}" placeholder="e.g. 5–7 Days" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Starting Price</label>
+              <input class="form-input" id="df-price" value="${d.price}" placeholder="e.g. ₹18,000" />
+            </div>
+          </div>
+          <div class="edit-form-actions">
+            <button class="btn btn-gold" onclick="saveDest()">💾 ${editingDestId !== null ? 'Update' : 'Add'} Destination</button>
+            <button class="btn btn-outline" onclick="cancelDestEdit()">Cancel</button>
+          </div>
+        </div>
+      `;
+      document.getElementById('df-name').focus();
+    }
+
+    function editDest(i) {
+      showDestForm(data.destinations[i], i);
+    }
+
+    function deleteDest(i) {
+      if (confirm(`"${data.destinations[i].name}" ko delete karna hai? Ye action undo nahi hoga.`)) {
+        data.destinations.splice(i, 1);
+        saveData(data);
+        renderDests();
+        showToast('🗑 Destination deleted');
+      }
+    }
+
+    function saveDest() {
+      const name = document.getElementById('df-name').value.trim();
+      const img = document.getElementById('df-img').value.trim();
+      if (!name) { showToast('⚠️ Destination name zaroor daalein'); return; }
+
+      const dest = {
+        id: editingDestId !== null ? data.destinations[editingDestId].id : 'd' + Date.now(),
+        name,
+        img: img || '',
+        tag: document.getElementById('df-tag').value.trim(),
+        tagType: document.getElementById('df-tagType').value,
+        rating: document.getElementById('df-rating').value.trim(),
+        highlights: document.getElementById('df-highlights').value.trim(),
+        duration: document.getElementById('df-duration').value.trim(),
+        price: document.getElementById('df-price').value.trim()
+      };
+
+      if (editingDestId !== null) {
+        data.destinations[editingDestId] = dest;
+        showToast('✅ Destination updated!');
+      } else {
+        data.destinations.push(dest);
+        showToast('✅ Destination added!');
+      }
+      saveData(data);
+      cancelDestEdit();
+      renderDests();
+    }
+
+    function cancelDestEdit() {
+      document.getElementById('destEditArea').innerHTML = '';
+      editingDestId = null;
+    }
+
+    // ──────────────────────────────────────────
+    // PACKAGES
+    // ──────────────────────────────────────────
+    let editingPkgId = null;
+    let tempPkgFeatures = [];
+
+    function renderPkgs() {
+      const list = document.getElementById('pkgList');
+      const pkgs = data.packages || [];
+      document.getElementById('pkgListCount').textContent = pkgs.length;
+
+      if (pkgs.length === 0) {
+        list.innerHTML = `<div class="empty-state"><p>Koi package nahi hai. "Add Package" se add karein.</p></div>`;
+        return;
+      }
+
+      list.innerHTML = pkgs.map((p, i) => `
+        <div class="item-card">
+          <div class="item-info">
+            <div class="item-name">${p.badge ? '✦ ' : ''}${p.name} (${p.tier})</div>
+            <div class="item-meta">₹${p.price}/person · ${p.duration} · ${p.features.length} features</div>
+          </div>
+          <div class="item-actions">
+            <button class="btn btn-outline btn-sm" onclick="editPkg(${i})">✏ Edit</button>
+            <button class="btn btn-danger btn-sm" onclick="deletePkg(${i})">🗑</button>
+          </div>
+        </div>
+      `).join('');
+      updateCounts();
+    }
+
+    function showPkgForm(pkg, index) {
+      editingPkgId = index !== undefined ? index : null;
+      const p = pkg || { tier: '', name: '', price: '', duration: '', badge: '', featured: false, features: [] };
+      tempPkgFeatures = [...(p.features || [])];
+
+      document.getElementById('pkgEditArea').innerHTML = `
+        <div class="edit-form">
+          <div class="edit-form-header">
+            <div class="edit-form-title">${editingPkgId !== null ? '✏ Edit' : '+ Add'} Package</div>
+            <button class="btn btn-outline btn-sm" onclick="cancelPkgEdit()">✕ Cancel</button>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Tier *</label>
+              <input class="form-input" id="pf-tier" value="${p.tier}" placeholder="e.g. Standard, Premium, Luxury" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Package Name *</label>
+              <input class="form-input" id="pf-name" value="${p.name}" placeholder="e.g. Gujarat Gems Tour" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Price (per person)</label>
+              <input class="form-input" id="pf-price" value="${p.price}" placeholder="e.g. 9,500" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Duration</label>
+              <input class="form-input" id="pf-duration" value="${p.duration}" placeholder="e.g. 3 Nights · 4 Days" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Badge Text (optional)</label>
+              <input class="form-input" id="pf-badge" value="${p.badge}" placeholder="e.g. Best Value ✦" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Featured?</label>
+              <select class="form-select" id="pf-featured">
+                <option value="false" ${!p.featured ? 'selected' : ''}>No</option>
+                <option value="true" ${p.featured ? 'selected' : ''}>Yes (Highlighted)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-top:20px">
+            <label class="form-label" style="margin-bottom:8px;display:block;">Features / Inclusions</label>
+            <div id="pkgFeaturesList"></div>
+            <div class="add-feature-row">
+              <input id="pf-newFeature" placeholder="Feature name..." />
+              <select id="pf-newFeatureType">
+                <option value="inc">✅ Included</option>
+                <option value="exc">❌ Excluded</option>
+              </select>
+              <button class="btn btn-success btn-sm" onclick="addPkgFeature()">+ Add</button>
+            </div>
+          </div>
+
+          <div class="edit-form-actions">
+            <button class="btn btn-gold" onclick="savePkg()">💾 ${editingPkgId !== null ? 'Update' : 'Add'} Package</button>
+            <button class="btn btn-outline" onclick="cancelPkgEdit()">Cancel</button>
+          </div>
+        </div>
+      `;
+      renderPkgFeatures();
+      document.getElementById('pf-tier').focus();
+    }
+
+    function renderPkgFeatures() {
+      const el = document.getElementById('pkgFeaturesList');
+      if (!el) return;
+      if (tempPkgFeatures.length === 0) {
+        el.innerHTML = '<p style="font-size:13px;color:var(--text-muted);padding:8px 0;">Koi feature nahi. Neeche se add karein.</p>';
+        return;
+      }
+      el.innerHTML = `<div class="feature-list">${tempPkgFeatures.map((f, i) => `
+        <div class="feature-item">
+          <span class="f-type ${f.type}">${f.type === 'inc' ? '✅' : '❌'}</span>
+          <span class="f-text">${f.text}</span>
+          <button class="f-remove" onclick="removePkgFeature(${i})">×</button>
+        </div>
+      `).join('')}</div>`;
+    }
+
+    function addPkgFeature() {
+      const text = document.getElementById('pf-newFeature').value.trim();
+      const type = document.getElementById('pf-newFeatureType').value;
+      if (!text) return;
+      tempPkgFeatures.push({ text, type });
+      document.getElementById('pf-newFeature').value = '';
+      renderPkgFeatures();
+    }
+
+    function removePkgFeature(i) {
+      tempPkgFeatures.splice(i, 1);
+      renderPkgFeatures();
+    }
+
+    function editPkg(i) {
+      showPkgForm(data.packages[i], i);
+    }
+
+    function deletePkg(i) {
+      if (confirm(`"${data.packages[i].name}" ko delete karna hai?`)) {
+        data.packages.splice(i, 1);
+        saveData(data);
+        renderPkgs();
+        showToast('🗑 Package deleted');
+      }
+    }
+
+    function savePkg() {
+      const tier = document.getElementById('pf-tier').value.trim();
+      const name = document.getElementById('pf-name').value.trim();
+      if (!tier || !name) { showToast('⚠️ Tier aur name zaroor daalein'); return; }
+
+      const pkg = {
+        id: editingPkgId !== null ? data.packages[editingPkgId].id : 'p' + Date.now(),
+        tier,
+        name,
+        price: document.getElementById('pf-price').value.trim(),
+        duration: document.getElementById('pf-duration').value.trim(),
+        badge: document.getElementById('pf-badge').value.trim(),
+        featured: document.getElementById('pf-featured').value === 'true',
+        features: [...tempPkgFeatures]
+      };
+
+      if (editingPkgId !== null) {
+        data.packages[editingPkgId] = pkg;
+        showToast('✅ Package updated!');
+      } else {
+        data.packages.push(pkg);
+        showToast('✅ Package added!');
+      }
+      saveData(data);
+      cancelPkgEdit();
+      renderPkgs();
+    }
+
+    function cancelPkgEdit() {
+      document.getElementById('pkgEditArea').innerHTML = '';
+      editingPkgId = null;
+      tempPkgFeatures = [];
+    }
+
+    // ──────────────────────────────────────────
+    // REVIEWS
+    // ──────────────────────────────────────────
+    let editingRevId = null;
+
+    function renderRevs() {
+      const list = document.getElementById('revList');
+      const revs = data.reviews || [];
+      document.getElementById('revListCount').textContent = revs.length;
+
+      if (revs.length === 0) {
+        list.innerHTML = `<div class="empty-state"><p>Koi review nahi hai. "Add Review" se add karein.</p></div>`;
+        return;
+      }
+
+      list.innerHTML = revs.map((r, i) => `
+        <div class="item-card">
+          <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,${r.avatarColor1},${r.avatarColor2});display:flex;align-items:center;justify-content:center;font-weight:800;color:white;flex-shrink:0;font-size:16px;">${r.name.charAt(0)}</div>
+          <div class="item-info">
+            <div class="item-name">${r.name}</div>
+            <div class="item-meta">${r.city} · ${'★'.repeat(r.rating)}</div>
+          </div>
+          <div class="item-actions">
+            <button class="btn btn-outline btn-sm" onclick="editRev(${i})">✏ Edit</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteRev(${i})">🗑</button>
+          </div>
+        </div>
+      `).join('');
+      updateCounts();
+    }
+
+    function showRevForm(rev, index) {
+      editingRevId = index !== undefined ? index : null;
+      const r = rev || { name: '', city: '', quote: '', rating: 5, avatarColor1: '#0c2f4e', avatarColor2: '#3498db', destImg: '' };
+
+      document.getElementById('revEditArea').innerHTML = `
+        <div class="edit-form">
+          <div class="edit-form-header">
+            <div class="edit-form-title">${editingRevId !== null ? '✏ Edit' : '+ Add'} Review</div>
+            <button class="btn btn-outline btn-sm" onclick="cancelRevEdit()">✕ Cancel</button>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Reviewer Name *</label>
+              <input class="form-input" id="rf-name" value="${r.name}" placeholder="e.g. Rajesh Patel" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">City</label>
+              <input class="form-input" id="rf-city" value="${r.city}" placeholder="e.g. Ahmedabad, Gujarat" />
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Review Quote *</label>
+              <textarea class="form-textarea" id="rf-quote" rows="3" placeholder="Customer ka review...">${r.quote}</textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Rating (1-5 stars)</label>
+              <select class="form-select" id="rf-rating">
+                <option value="5" ${r.rating===5?'selected':''}>★★★★★ (5)</option>
+                <option value="4" ${r.rating===4?'selected':''}>★★★★ (4)</option>
+                <option value="3" ${r.rating===3?'selected':''}>★★★ (3)</option>
+                <option value="2" ${r.rating===2?'selected':''}>★★ (2)</option>
+                <option value="1" ${r.rating===1?'selected':''}>★ (1)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Destination Image (optional)</label>
+              <input class="form-input" id="rf-destImg" value="${r.destImg}" placeholder="kashmir.jpg or URL" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Avatar Color 1</label>
+              <div class="color-preview-row">
+                <input type="color" id="rf-color1" value="${r.avatarColor1}" style="width:48px;height:36px;border:none;cursor:pointer;" />
+                <input class="form-input" id="rf-color1text" value="${r.avatarColor1}" style="flex:1" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Avatar Color 2</label>
+              <div class="color-preview-row">
+                <input type="color" id="rf-color2" value="${r.avatarColor2}" style="width:48px;height:36px;border:none;cursor:pointer;" />
+                <input class="form-input" id="rf-color2text" value="${r.avatarColor2}" style="flex:1" />
+              </div>
+            </div>
+          </div>
+          <div class="edit-form-actions">
+            <button class="btn btn-gold" onclick="saveRev()">💾 ${editingRevId !== null ? 'Update' : 'Add'} Review</button>
+            <button class="btn btn-outline" onclick="cancelRevEdit()">Cancel</button>
+          </div>
+        </div>
+      `;
+
+      // Sync color inputs
+      document.getElementById('rf-color1').addEventListener('input', e => document.getElementById('rf-color1text').value = e.target.value);
+      document.getElementById('rf-color2').addEventListener('input', e => document.getElementById('rf-color2text').value = e.target.value);
+      document.getElementById('rf-name').focus();
+    }
+
+    function editRev(i) { showRevForm(data.reviews[i], i); }
+
+    function deleteRev(i) {
+      if (confirm(`"${data.reviews[i].name}" ka review delete karna hai?`)) {
+        data.reviews.splice(i, 1);
+        saveData(data);
+        renderRevs();
+        showToast('🗑 Review deleted');
+      }
+    }
+
+    function saveRev() {
+      const name = document.getElementById('rf-name').value.trim();
+      const quote = document.getElementById('rf-quote').value.trim();
+      if (!name || !quote) { showToast('⚠️ Name aur review zaroor daalein'); return; }
+
+      const rev = {
+        id: editingRevId !== null ? data.reviews[editingRevId].id : 'r' + Date.now(),
+        name,
+        city: document.getElementById('rf-city').value.trim(),
+        quote,
+        rating: parseInt(document.getElementById('rf-rating').value),
+        avatarColor1: document.getElementById('rf-color1text').value || '#0c2f4e',
+        avatarColor2: document.getElementById('rf-color2text').value || '#3498db',
+        destImg: document.getElementById('rf-destImg').value.trim()
+      };
+
+      if (editingRevId !== null) {
+        data.reviews[editingRevId] = rev;
+        showToast('✅ Review updated!');
+      } else {
+        data.reviews.push(rev);
+        showToast('✅ Review added!');
+      }
+      saveData(data);
+      cancelRevEdit();
+      renderRevs();
+    }
+
+    function cancelRevEdit() {
+      document.getElementById('revEditArea').innerHTML = '';
+      editingRevId = null;
+    }
+
+    // ──────────────────────────────────────────
+    // ABOUT
+    // ──────────────────────────────────────────
+    function loadAbout() {
+      const a = data.about || DEFAULT_DATA.about;
+      document.getElementById('about-title').value = a.title || '';
+      document.getElementById('about-desc').value = a.desc || '';
+      document.getElementById('about-img1').value = a.img1 || '';
+      document.getElementById('about-img2').value = a.img2 || '';
+      document.getElementById('about-rating').value = a.rating || '';
+      document.getElementById('about-ratingLabel').value = a.ratingLabel || '';
+      document.getElementById('about-why1title').value = a.why1title || '';
+      document.getElementById('about-why1desc').value = a.why1desc || '';
+      document.getElementById('about-why2title').value = a.why2title || '';
+      document.getElementById('about-why2desc').value = a.why2desc || '';
+      document.getElementById('about-why3title').value = a.why3title || '';
+      document.getElementById('about-why3desc').value = a.why3desc || '';
+      document.getElementById('about-why4title').value = a.why4title || '';
+      document.getElementById('about-why4desc').value = a.why4desc || '';
+      document.getElementById('about-stat1val').value = a.stat1val || '';
+      document.getElementById('about-stat1label').value = a.stat1label || '';
+      document.getElementById('about-stat2val').value = a.stat2val || '';
+      document.getElementById('about-stat2label').value = a.stat2label || '';
+      document.getElementById('about-stat3val').value = a.stat3val || '';
+      document.getElementById('about-stat3label').value = a.stat3label || '';
+    }
+
+    function saveAbout() {
+      data.about = {
+        title: document.getElementById('about-title').value,
+        desc: document.getElementById('about-desc').value,
+        img1: document.getElementById('about-img1').value,
+        img2: document.getElementById('about-img2').value,
+        rating: document.getElementById('about-rating').value,
+        ratingLabel: document.getElementById('about-ratingLabel').value,
+        why1title: document.getElementById('about-why1title').value,
+        why1desc: document.getElementById('about-why1desc').value,
+        why2title: document.getElementById('about-why2title').value,
+        why2desc: document.getElementById('about-why2desc').value,
+        why3title: document.getElementById('about-why3title').value,
+        why3desc: document.getElementById('about-why3desc').value,
+        why4title: document.getElementById('about-why4title').value,
+        why4desc: document.getElementById('about-why4desc').value,
+        stat1val: document.getElementById('about-stat1val').value,
+        stat1label: document.getElementById('about-stat1label').value,
+        stat2val: document.getElementById('about-stat2val').value,
+        stat2label: document.getElementById('about-stat2label').value,
+        stat3val: document.getElementById('about-stat3val').value,
+        stat3label: document.getElementById('about-stat3label').value,
+      };
+      saveData(data);
+      showToast('✅ About section saved!');
+    }
+
+    // ──────────────────────────────────────────
+    // CONTACT
+    // ──────────────────────────────────────────
+    function loadContact() {
+      const c = data.contact || DEFAULT_DATA.contact;
+      document.getElementById('contact-phone').value = c.phone || '';
+      document.getElementById('contact-whatsapp').value = c.whatsapp || '';
+      document.getElementById('contact-email').value = c.email || '';
+      document.getElementById('contact-address').value = c.address || '';
+      document.getElementById('contact-hours').value = c.hours || '';
+    }
+
+    function saveContact() {
+      data.contact = {
+        phone: document.getElementById('contact-phone').value,
+        whatsapp: document.getElementById('contact-whatsapp').value,
+        email: document.getElementById('contact-email').value,
+        address: document.getElementById('contact-address').value,
+        hours: document.getElementById('contact-hours').value,
+      };
+      saveData(data);
+      showToast('✅ Contact info saved!');
+    }
+
+    // ──────────────────────────────────────────
+    // COMPANY
+    // ──────────────────────────────────────────
+    function loadCompany() {
+      const c = data.company || DEFAULT_DATA.company;
+      document.getElementById('company-brand').value = c.brand || '';
+      document.getElementById('company-subtitle').value = c.subtitle || '';
+      document.getElementById('company-tagline').value = c.tagline || '';
+      document.getElementById('company-copyright').value = c.copyright || '';
+      document.getElementById('company-footerBottom').value = c.footerBottom || '';
+      document.getElementById('company-facebook').value = c.facebook || '';
+      document.getElementById('company-instagram').value = c.instagram || '';
+      document.getElementById('company-youtube').value = c.youtube || '';
+    }
+
+    function saveCompany() {
+      data.company = {
+        brand: document.getElementById('company-brand').value,
+        subtitle: document.getElementById('company-subtitle').value,
+        tagline: document.getElementById('company-tagline').value,
+        copyright: document.getElementById('company-copyright').value,
+        footerBottom: document.getElementById('company-footerBottom').value,
+        facebook: document.getElementById('company-facebook').value,
+        instagram: document.getElementById('company-instagram').value,
+        youtube: document.getElementById('company-youtube').value,
+      };
+      saveData(data);
+      showToast('✅ Company info saved!');
+    }
+
+    // ──────────────────────────────────────────
+    // INIT
+    // ──────────────────────────────────────────
+    renderDashboard();
+  </script>
+
+</body>
+</html>

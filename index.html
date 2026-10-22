@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Varish Tour & Travels | Premium India Travel Experiences</title>
+  <meta name="description"
+    content="Varish Tour & Travels – Discover India's most iconic destinations. Kashmir, Jaisalmer, Saputara, Mount Abu & more. Premium packages, expert guides, unforgettable journeys." />
+  <meta name="keywords"
+    content="Kashmir tour, Jaisalmer package, Saputara, Mount Abu, Gujarat travel, India tour packages" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ── WELCOME SCREEN ── -->
+  <div class="welcome-screen" id="loader">
+    <!-- Background particles -->
+    <canvas class="welcome-particles" id="welcomeParticles"></canvas>
+    <!-- Ambient glow orbs -->
+    <div class="welcome-orb welcome-orb-1"></div>
+    <div class="welcome-orb welcome-orb-2"></div>
+    <div class="welcome-orb welcome-orb-3"></div>
+
+    <div class="welcome-content" id="welcomeContent">
+      <!-- Top decorative line -->
+      <div class="welcome-line welcome-line-top" id="wLineTop"></div>
+
+      <!-- Logo icon -->
+      <div class="welcome-logo" id="wLogo">
+        <img src="logo.jpg" alt="Varish Logo"
+          style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;" />
+      </div>
+
+
+
+      <!-- Loading indicator -->
+      <div class="welcome-loader" id="wLoader">
+        <div class="welcome-loader-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── HEADER ── -->
+  <header class="header" id="header">
+    <div class="header-container">
+      <a href="#home" class="logo" id="logo-link">
+        <div class="logo-icon">
+          <img src="logo.jpg" alt="Varish Logo"
+            style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;" />
+        </div>
+        <div class="logo-text">
+          <span class="logo-brand">Varish</span>
+          <span class="logo-sub">Tour & Travels</span>
+        </div>
+      </a>
+
+      <nav class="nav" id="mainNav">
+        <a href="#home" class="nav-link active" id="nl-home">Home</a>
+        <a href="#destinations" class="nav-link" id="nl-dest">Destinations</a>
+        <a href="#packages" class="nav-link" id="nl-pkg">Packages</a>
+        <a href="#about" class="nav-link" id="nl-about">About</a>
+        <a href="#contact" class="nav-link" id="nl-contact">Contact</a>
+      </nav>
+
+      <div class="header-right">
+        <!-- Language Switcher -->
+        <div id="google_translate_element" class="lang-select"></div>
+
+        <a href="tel:+919898989097" class="header-phone" id="header-phone-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.37 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012.28 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+          </svg>
+          +91 98989 89097
+        </a>
+        <button class="btn-gold" id="headerBookBtn">Book a Trip</button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <!-- Fallback image (always loads and is controlled by Admin panel) -->
+      <img src="hero-bg.jpg" alt="Incredible India" class="hero-bg-img" id="hero-bg-img" />
+
+      <!-- Video background (placed on top). To use a video, add 'hero-video.mp4' to your folder -->
+      <video autoplay muted loop playsinline class="hero-bg-video" id="hero-bg-video" poster="hero-bg.jpg"
+        style="position: absolute; top: 0; left: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
+        <source src="hero-video.mp4" type="video/mp4" />
+      </video>
+
+      <div class="hero-overlay" style="z-index: 2;"></div>
+      <div class="hero-gradient" style="z-index: 2;"></div>
+    </div>
+
+    <!-- Floating destination preview cards -->
+    <div class="hero-destinations" id="heroDestCards">
+      <div class="hdest-card" id="hd-kashmir">
+        <img src="kashmir.jpg" alt="Kashmir" />
+        <div class="hdest-info">
+          <strong>Kashmir</strong>
+          <span>Heaven on Earth</span>
+        </div>
+      </div>
+      <div class="hdest-card" id="hd-jaisalmer">
+        <img src="jaisalmer.jpg" alt="Jaisalmer" />
+        <div class="hdest-info">
+          <strong>Jaisalmer</strong>
+          <span>Golden City</span>
+        </div>
+      </div>
+      <div class="hdest-card" id="hd-saputara">
+        <img src="saputara.jpg" alt="Saputara" />
+        <div class="hdest-info">
+          <strong>Saputara</strong>
+          <span>Hill Station</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-content" id="heroContent">
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        <span>India's Premium Travel Partner</span>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+        <p class="hero-welcome-text" id="heroWelcomeText" style="margin-bottom: 0;">Welcome to Varish Tour & Travels</p>
+        <a href="https://www.instagram.com/varish_tour_and_travels" target="_blank" aria-label="Instagram"
+          style="color: currentColor; display: flex; align-items: center; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='#E1306C'" onmouseout="this.style.color='currentColor'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+      </div>
+      <h1 class="hero-title">
+        <em>Extraordinary</em>
+        <span>Journeys Across</span>
+        <strong>Incredible India</strong>
+      </h1>
+      <p class="hero-desc">
+        From snow-draped Kashmir valleys to the golden sands of Jaisalmer — we craft bespoke travel experiences that
+        stay with you forever.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-gold btn-lg" id="heroExploreBtn">
+          Explore Destinations
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+        <button class="btn-outline-white btn-lg" id="heroPackagesBtn">View Packages</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <strong id="statTrips">5000+</strong>
+          <span>Happy Travelers</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <strong id="statDests">200+</strong>
+          <span>Destinations</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <strong id="statYears">29+</strong>
+          <span>Years Experience</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="#destinations" class="hero-scroll-cue" id="heroScrollCue">
+      <div class="scroll-mouse">
+        <div class="scroll-dot"></div>
+      </div>
+      <span>Scroll to Explore</span>
+    </a>
+  </section>
+
+  <!-- ── MARQUEE ── -->
+  <div class="marquee-strip">
+    <div class="marquee-inner">
+      <span>✦ Kashmir</span>
+      <span>✦ Jaisalmer</span>
+      <span>✦ Saputara</span>
+      <span>✦ Mount Abu</span>
+      <span>✦ Goa</span>
+      <span>✦ Manali</span>
+      <span>✦ Udaipur</span>
+      <span>✦ Kashmir</span>
+      <span>✦ Jaisalmer</span>
+      <span>✦ Saputara</span>
+      <span>✦ Mount Abu</span>
+      <span>✦ Goa</span>
+      <span>✦ Manali</span>
+      <span>✦ Udaipur</span>
+    </div>
+  </div>
+
+  <!-- ── DESTINATIONS ── -->
+  <section class="section" id="destinations">
+    <div class="container">
+      <div class="section-label">
+        <div class="label-line"></div>
+        <span>Popular Destinations</span>
+        <div class="label-line"></div>
+      </div>
+      <h2 class="section-title">Places We Take You</h2>
+      <p class="section-desc">Handcrafted experiences at India's most breathtaking destinations</p>
+
+      <div class="dest-grid">
+
+        <!-- KASHMIR - Large card -->
+        <div class="dest-card dest-large reveal" id="dc-kashmir">
+          <img src="kashmir.jpg" alt="Kashmir" class="dest-img" />
+          <div class="dest-overlay"></div>
+          <div class="dest-body">
+            <div class="dest-top">
+              <span class="dest-tag dest-featured">⭐ Most Popular</span>
+              <span class="dest-rating">★ 4.9</span>
+            </div>
+            <div class="dest-bottom">
+              <h3 class="dest-name">Kashmir</h3>
+              <p class="dest-highlights">Dal Lake · Gulmarg · Pahalgam</p>
+              <div class="dest-footer">
+                <div class="dest-meta">
+                  <span>5–7 Days</span>
+                  <span>From <strong>₹18,000</strong></span>
+                </div>
+                <button class="dest-btn" id="btn-dc-kashmir">Explore →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- JAISALMER -->
+        <div class="dest-card reveal" id="dc-jaisalmer">
+          <img src="jaisalmer.jpg" alt="Jaisalmer" class="dest-img" />
+          <div class="dest-overlay"></div>
+          <div class="dest-body">
+            <div class="dest-top">
+              <span class="dest-tag">Desert</span>
+              <span class="dest-rating">★ 4.8</span>
+            </div>
+            <div class="dest-bottom">
+              <h3 class="dest-name">Jaisalmer</h3>
+              <p class="dest-highlights">Dunes · Fort · Camel Safari</p>
+              <div class="dest-footer">
+                <div class="dest-meta">
+                  <span>3–5 Days</span>
+                  <span>From <strong>₹12,000</strong></span>
+                </div>
+                <button class="dest-btn" id="btn-dc-jaisalmer">Explore →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SAPUTARA -->
+        <div class="dest-card reveal" id="dc-saputara">
+          <img src="saputara.jpg" alt="Saputara" class="dest-img" />
+          <div class="dest-overlay"></div>
+          <div class="dest-body">
+            <div class="dest-top">
+              <span class="dest-tag">Hill Station</span>
+              <span class="dest-rating">★ 4.7</span>
+            </div>
+            <div class="dest-bottom">
+              <h3 class="dest-name">Saputara</h3>
+              <p class="dest-highlights">Lake · Waterfalls · Sunrise</p>
+              <div class="dest-footer">
+                <div class="dest-meta">
+                  <span>2–3 Days</span>
+                </div>
+                <button class="dest-btn" id="btn-dc-saputara">Explore →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOUNT ABU -->
+        <div class="dest-card dest-wide reveal" id="dc-mountabu">
+          <img src="mountabu.jpg" alt="Mount Abu" class="dest-img" />
+          <div class="dest-overlay"></div>
+          <div class="dest-body">
+            <div class="dest-top">
+              <span class="dest-tag">Nature</span>
+              <span class="dest-rating">★ 4.8</span>
+            </div>
+            <div class="dest-bottom">
+              <h3 class="dest-name">Mount Abu</h3>
+              <p class="dest-highlights">Nakki Lake · Dilwara Temple · Shikhar</p>
+              <div class="dest-footer">
+                <div class="dest-meta">
+                  <span>2–4 Days</span>
+                </div>
+                <button class="dest-btn" id="btn-dc-mountabu">Explore →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PACKAGES ── -->
+  <section class="section section-dark" id="packages">
+    <div class="container">
+      <div class="section-label">
+        <div class="label-line"></div>
+        <span>Tour Packages</span>
+        <div class="label-line"></div>
+      </div>
+      <h2 class="section-title">Choose Your Journey</h2>
+      <p class="section-desc">All-inclusive packages designed for every budget and travel style</p>
+
+      <div class="pkg-grid">
+
+        <!-- Premium — Featured -->
+        <div class="pkg-card pkg-featured reveal" id="pkg-premium">
+          <div class="pkg-badge">Best Value ✦</div>
+          <div class="pkg-tier">Premium</div>
+          <div class="pkg-price">
+            <sup>₹</sup>3,500<sub>/person</sub>
+          </div>
+          <div class="pkg-name">Rajasthan Royal Combo</div>
+          <div class="pkg-duration">8 Nights · 9 Days</div>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-features">
+            <li class="feat-inc">Jaisalmer + Mount Abu</li>
+            <li class="feat-inc">Desert Camp Stay</li>
+            <li class="feat-inc">Camel Safari at Sunset</li>
+            <li class="feat-inc">Dilwara Temple Tour</li>
+            <li class="feat-inc">Cultural Folk Evening</li>
+            <li class="feat-inc">All Meals Included</li>
+            <li class="feat-inc">AC Coach Transport</li>
+          </ul>
+          <button class="pkg-btn pkg-btn-gold" id="book-premium">Book This Package</button>
+        </div>
+
+        <!-- Luxury -->
+        <div class="pkg-card reveal" id="pkg-luxury">
+          <div class="pkg-tier">Luxury</div>
+          <div class="pkg-price">
+            <sup>₹</sup>12,500<sub>/person</sub>
+          </div>
+          <div class="pkg-name">Kashmir Delight</div>
+          <div class="pkg-duration">6 Nights · 7 Days</div>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-features">
+            <li class="feat-inc">Houseboat on Dal Lake</li>
+            <li class="feat-inc">Gulmarg Gondola Ride</li>
+            <li class="feat-inc">Pahalgam Valley Tour</li>
+            <li class="feat-inc">Shikara Ride</li>
+            <li class="feat-inc">All Meals Included</li>
+            <li class="feat-inc">AC Cab Transfers</li>
+            <li class="feat-exc">Airfare (Add-on Available)</li>
+          </ul>
+          <button class="pkg-btn" id="book-luxury">Book This Package</button>
+        </div>
+
+      </div>
+
+      <div class="custom-banner reveal" id="customBanner">
+        <div class="custom-banner-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        </div>
+        <div class="custom-banner-text">
+          <strong>Need something different?</strong>
+          <span>We build 100% custom tour plans tailored to your dates, budget & group size.</span>
+        </div>
+        <button class="btn-gold" id="customPlanBtn">Get Custom Plan</button>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ── WHY US ── -->
+  <section class="section" id="about">
+    <div class="container about-grid">
+      <div class="about-visual reveal">
+        <div class="about-img-stack">
+          <div class="about-img-main">
+            <img src="kashmir.jpg" alt="Kashmir Travel" />
+          </div>
+          <div class="about-img-secondary">
+            <img src="jaisalmer.jpg" alt="Jaisalmer" />
+          </div>
+          <div class="about-stats-card">
+            <strong>4.9 ★</strong>
+            <span>Average Rating</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <div class="section-label" style="justify-content:flex-start">
+          <div class="label-line"></div>
+          <span>Why Varish Travels</span>
+        </div>
+        <h2 class="section-title" style="text-align:left">We Don't Just Plan Trips.<br /><em>We Create Memories.</em>
+        </h2>
+        <p class="about-desc">
+          Since 2010, Varish Tour & Travels has been Gujarat's most trusted travel company. We believe every journey
+          should be extraordinary — whether it's your first trip to the mountains or a royal desert adventure.
+        </p>
+
+        <div class="why-grid">
+          <div class="why-card" id="wc-safe">
+            <div class="why-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <div>
+              <strong>100% Safe & Verified</strong>
+              <p>All accommodations, guides & vehicles are thoroughly vetted.</p>
+            </div>
+          </div>
+          <div class="why-card" id="wc-price">
+            <div class="why-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+            </div>
+            <div>
+              <strong>Best Price Guarantee</strong>
+              <p>Transparent pricing with zero hidden charges. We match any quote.</p>
+            </div>
+          </div>
+          <div class="why-card" id="wc-support">
+            <div class="why-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.37 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012.28 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+              </svg>
+            </div>
+            <div>
+              <strong>24 × 7 Support</strong>
+              <p>Our experts are always a call away — before, during & after your trip.</p>
+            </div>
+          </div>
+          <div class="why-card" id="wc-custom">
+            <div class="why-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M19.07 4.93l-1.41 1.41M5.34 17.66l-1.41 1.41M19.07 19.07l-1.41-1.41M5.34 6.34L3.93 4.93M22 12h-2M4 12H2M12 22v-2M12 4V2" />
+              </svg>
+            </div>
+            <div>
+              <strong>Fully Customised</strong>
+              <p>No two trips are alike. We design every tour around your unique preferences.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-numbers">
+          <div class="about-num">
+            <strong>5000+</strong>
+            <span>Happy Travelers</span>
+          </div>
+          <div class="about-num">
+            <strong>200+</strong>
+            <span>Destinations</span>
+          </div>
+          <div class="about-num">
+            <strong>29+</strong>
+            <span>Years of Trust</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section class="section" id="contact">
+    <div class="container contact-grid">
+
+      <div class="contact-info reveal">
+        <div class="section-label" style="justify-content:flex-start">
+          <div class="label-line"></div>
+          <span>Get In Touch</span>
+        </div>
+        <h2 class="section-title" style="text-align:left">Start Planning<br />Your Next Trip</h2>
+        <p class="about-desc">Fill out the form and our travel expert will reach out within 2 hours with a personalised
+          itinerary.</p>
+
+        <div class="contact-details">
+          <a href="tel:+919898989097" class="contact-item" id="ci-phone">
+            <div class="ci-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.37 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012.28 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+              </svg>
+            </div>
+            <div>
+              <strong>Call / WhatsApp</strong>
+              <span>+91 98989 89097</span>
+            </div>
+          </a>
+          <a href="mailto:info@varishtravels.com" class="contact-item" id="ci-email">
+            <div class="ci-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+            <div>
+              <strong>Email</strong>
+              <span>info@varishtravels.com</span>
+            </div>
+          </a>
+          <div class="contact-item" id="ci-office">
+            <div class="ci-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div>
+              <strong>Office</strong>
+              <span>Gujarat, India &nbsp;|&nbsp; Mon–Sat: 9AM–7PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap reveal">
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-name">Full Name *</label>
+              <input type="text" id="cf-name" placeholder="Your full name" value="Nasir Bhai Chapple Vale" required />
+            </div>
+            <div class="form-group">
+              <label for="cf-phone">Phone / WhatsApp *</label>
+              <input type="tel" id="cf-phone" placeholder="+91 XXXXX XXXXX" value="9737703934" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-email">Email Address</label>
+              <input type="email" id="cf-email" placeholder="you@email.com" />
+            </div>
+            <div class="form-group">
+              <label for="cf-dest">Destination</label>
+              <select id="cf-dest">
+                <option value="">Choose destination</option>
+                <option>Kashmir</option>
+                <option>Jaisalmer</option>
+                <option>Saputara</option>
+                <option>Mount Abu</option>
+                <option>Custom / Multiple</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-date">Travel Date</label>
+              <input type="date" id="cf-date" />
+            </div>
+            <div class="form-group">
+              <label for="cf-travelers">No. of Travelers</label>
+              <select id="cf-travelers">
+                <option>1 Person</option>
+                <option>2 Persons</option>
+                <option selected>2–3 Persons</option>
+                <option>3–5 Persons</option>
+                <option>6–10 Persons</option>
+                <option>Group (10+)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group form-full">
+            <label for="cf-msg">Message</label>
+            <textarea id="cf-msg" rows="3"
+              placeholder="Tell us about your dream trip, special requirements..."></textarea>
+          </div>
+          <button type="submit" class="btn-gold btn-submit" id="cfSubmitBtn">
+            <span id="cfSubmitText">Send Enquiry</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer" id="footer">
+    <div class="footer-main">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="logo">
+            <div class="logo-icon">
+              <img src="logo.jpg" alt="Varish Logo"
+                style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;" />
+            </div>
+            <div class="logo-text">
+              <span class="logo-brand">Varish</span>
+              <span class="logo-sub">Tour & Travels</span>
+            </div>
+          </a>
+          <p>Crafting extraordinary travel experiences across India since 2010. Your journey is our passion.</p>
+          <div class="social-links">
+            <a href="#" class="social-btn" id="sf-fb" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+              </svg>
+            </a>
+            <a href="#" class="social-btn" id="sf-ig" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+            <a href="https://wa.me/919898989097" class="social-btn" id="sf-wa" aria-label="WhatsApp">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                <path
+                  d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.856L0 24l6.335-1.525C8.05 23.447 9.992 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.846 0-3.597-.5-5.107-1.373l-.363-.214-3.76.906.946-3.659-.237-.378C2.51 15.666 2 13.9 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+              </svg>
+            </a>
+            <a href="#" class="social-btn" id="sf-yt" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Destinations</h5>
+          <ul>
+            <li><a href="#destinations">Kashmir</a></li>
+            <li><a href="#destinations">Jaisalmer</a></li>
+            <li><a href="#destinations">Saputara</a></li>
+            <li><a href="#destinations">Mount Abu</a></li>
+            <li><a href="#destinations">Simla</a></li>
+            <li><a href="#destinations">Manali</a></li>
+            <li><a href="#destinations">Ajmer</a></li>
+            <li><a href="#destinations">Mumbai</a></li>
+            <li><a href="#destinations">Goa</a></li>
+            <li><a href="#destinations">Kerala</a></li>
+            <li><a href="#destinations">All Over India</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li>+91 98989 89097</li>
+            <li>info@varishtravels.com</li>
+            <li>Gujarat, India</li>
+            <li>Mon–Sat: 9AM–7PM</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>© 2024 Varish Tour & Travels. All rights reserved.</span>
+        <span>Made with ❤️ in Gujarat, India</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── BOOKING MODAL ── -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal-box" id="modalBox">
+      <button class="modal-close" id="modalClose" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+      <div class="modal-header">
+        <div class="modal-icon-wrap">
+          <img src="logo.jpg" alt="Varish Logo"
+            style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;" />
+        </div>
+        <h3 class="modal-title">Book Your Trip</h3>
+        <p class="modal-pkg" id="modalPkgName">Kashmir Delight</p>
+      </div>
+      <form id="modalForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="m-name">Full Name *</label>
+            <input type="text" id="m-name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="m-phone">Phone *</label>
+            <input type="tel" id="m-phone" placeholder="+91 XXXXX XXXXX" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="m-date">Travel Date</label>
+          <input type="date" id="m-date" />
+        </div>
+        <div class="form-group">
+          <label for="m-travelers">Travelers</label>
+          <select id="m-travelers">
+            <option>1 Person</option>
+            <option>2 Persons</option>
+            <option>3–5 Persons</option>
+            <option>6–10 Persons</option>
+            <option>Group (10+)</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-gold btn-submit" id="modalSubmitBtn">
+          <span id="modalSubmitText">Confirm Booking Request</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── TOAST ── -->
+  <div class="toast" id="toast"></div>
+
+
+
+  <!-- ── WHATSAPP FLOAT ── -->
+  <a href="https://wa.me/919898989097" class="wa-float" id="waFloat" target="_blank" rel="noopener"
+    aria-label="WhatsApp">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+      <path
+        d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.856L0 24l6.335-1.525C8.05 23.447 9.992 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.846 0-3.597-.5-5.107-1.373l-.363-.214-3.76.906.946-3.659-.237-.378C2.51 15.666 2 13.9 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+    </svg>
+    <span class="wa-label">WhatsApp Us</span>
+  </a>
+
+  <!-- ── GOOGLE TRANSLATE SCRIPT ── -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,gu',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
