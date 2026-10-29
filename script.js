@@ -24,9 +24,9 @@ const ADMIN_DEFAULT = {
     {
       id: 'd1', name: 'Kashmir', img: 'kashmir.jpg', tag: '⭐ Most Popular', tagType: 'featured',
       rating: '4.9', highlights: 'Dal Lake · Gulmarg · Pahalgam',
-      duration: '5–7 Days', price: '₹12,500',
+      duration: '', price: '',
       travelDate: '',
-      ticketPrice: '₹12,500 per person',
+      ticketPrice: '',
       phone: '9737703934',
       transport: 'Train',
       office: 'Jamalpur Patang Bazar, Kadiya Sheri'
@@ -34,26 +34,26 @@ const ADMIN_DEFAULT = {
     {
       id: 'd2', name: 'Jaisalmer', img: 'jaisalmer.jpg', tag: 'Desert', tagType: 'normal',
       rating: '4.8', highlights: 'Dunes · Fort · Camel Safari',
-      duration: '3–5 Days', price: '₹3,500',
+      duration: '', price: '',
       travelDate: '',
-      ticketPrice: '₹3,500 per person',
+      ticketPrice: '',
       phone: '9737703934',
       transport: '2×2 Bus',
       office: 'Jamalpur Darvaja, Kadiya Sheri'
     },
-    { id: 'd3', name: 'Saputara', img: 'saputara.jpg', tag: 'Hill Station', tagType: 'normal', rating: '4.7', highlights: 'Lake · Waterfalls · Sunrise', duration: '2–3 Days', price: '' },
-    { id: 'd4', name: 'Mount Abu', img: 'mountabu.jpg', tag: 'Nature', tagType: 'normal', rating: '4.8', highlights: 'Nakki Lake · Dilwara Temple · Shikhar', duration: '2–4 Days', price: '' },
-    { id: 'd5', name: 'Simla', img: 'simla.jpg', tag: 'Hill Station', tagType: 'normal', rating: '4.8', highlights: 'Mall Road · Snowfall', duration: '3–5 Days', price: '₹10,000' },
-    { id: 'd6', name: 'Manali', img: 'manali.jpg', tag: 'Adventure', tagType: 'normal', rating: '4.9', highlights: 'Rohtang Pass · Solang Valley', duration: '4–6 Days', price: '₹12,000' },
-    { id: 'd7', name: 'Ajmer', img: 'ajmer.jpg', tag: 'Spiritual', tagType: 'normal', rating: '4.7', highlights: 'Dargah Sharif · Pushkar', duration: '2–3 Days', price: '₹5,000' },
-    { id: 'd8', name: 'Mumbai', img: 'mumbai.jpg', tag: 'City', tagType: 'normal', rating: '4.8', highlights: 'Gateway of India · Marine Drive', duration: '2–4 Days', price: '₹8,000' },
-    { id: 'd9', name: 'Goa', img: 'goa.jpg', tag: 'Beach', tagType: 'normal', rating: '4.9', highlights: 'Beaches · Nightlife', duration: '3–5 Days', price: '₹15,000' },
-    { id: 'd10', name: 'Kerala', img: 'kerala.jpg', tag: 'Nature', tagType: 'normal', rating: '4.9', highlights: 'Backwaters · Munnar', duration: '5–7 Days', price: '₹18,000' },
-    { id: 'd11', name: 'All Over India', img: 'india.jpg', tag: 'Tour', tagType: 'normal', rating: '5.0', highlights: 'Custom Packages Across India', duration: 'Custom', price: 'On Request' }
+    { id: 'd3', name: 'Saputara', img: 'saputara.jpg', tag: 'Hill Station', tagType: 'normal', rating: '4.7', highlights: 'Lake · Waterfalls · Sunrise', duration: '', price: '' },
+    { id: 'd4', name: 'Mount Abu', img: 'mountabu.jpg', tag: 'Nature', tagType: 'normal', rating: '4.8', highlights: 'Nakki Lake · Dilwara Temple · Shikhar', duration: '', price: '' },
+    { id: 'd5', name: 'Simla', img: 'simla.jpg', tag: 'Hill Station', tagType: 'normal', rating: '4.8', highlights: 'Mall Road · Snowfall', duration: '', price: '' },
+    { id: 'd6', name: 'Manali', img: 'manali.jpg', tag: 'Adventure', tagType: 'normal', rating: '4.9', highlights: 'Rohtang Pass · Solang Valley', duration: '', price: '' },
+    { id: 'd7', name: 'Ajmer', img: 'ajmer.jpg', tag: 'Spiritual', tagType: 'normal', rating: '4.7', highlights: 'Dargah Sharif · Pushkar', duration: '', price: '' },
+    { id: 'd8', name: 'Mumbai', img: 'mumbai.jpg', tag: 'City', tagType: 'normal', rating: '4.8', highlights: 'Gateway of India · Marine Drive', duration: '', price: '' },
+    { id: 'd9', name: 'Goa', img: 'goa.jpg', tag: 'Beach', tagType: 'normal', rating: '4.9', highlights: 'Beaches · Nightlife', duration: '', price: '' },
+    { id: 'd10', name: 'Kerala', img: 'kerala.jpg', tag: 'Nature', tagType: 'normal', rating: '4.9', highlights: 'Backwaters · Munnar', duration: '', price: '' },
+    { id: 'd11', name: 'All Over India', img: 'india.jpg', tag: 'Tour', tagType: 'normal', rating: '5.0', highlights: 'Custom Packages Across India', duration: '', price: '' }
   ],
   packages: [
     {
-      id: 'p2', tier: 'Premium', name: 'Rajasthan Royal Combo', price: '3,500', duration: '8 Nights · 9 Days',
+      id: 'p2', tier: 'Premium', name: 'Rajasthan Royal Combo', price: '', duration: '',
       badge: 'Best Value ✦', featured: true,
       features: [
         { text: 'Jaisalmer + Mount Abu', type: 'inc' },
@@ -66,7 +66,7 @@ const ADMIN_DEFAULT = {
       ]
     },
     {
-      id: 'p3', tier: 'Luxury', name: 'Kashmir Delight', price: '12,500', duration: '6 Nights · 7 Days',
+      id: 'p3', tier: 'Luxury', name: 'Kashmir Delight', price: '', duration: '',
       badge: '', featured: false,
       features: [
         { text: 'Houseboat on Dal Lake', type: 'inc' },
@@ -119,7 +119,17 @@ const ADMIN_DEFAULT = {
 function getAdminData() {
   const stored = localStorage.getItem('varish_admin_data');
   if (stored) {
-    try { return { ...ADMIN_DEFAULT, ...JSON.parse(stored) }; }
+    try {
+      const parsed = JSON.parse(stored);
+      // Remove prices and durations from stored data to ensure clean display on the site
+      if (Array.isArray(parsed.packages)) {
+        parsed.packages.forEach(p => { p.price = ''; p.duration = ''; });
+      }
+      if (Array.isArray(parsed.destinations)) {
+        parsed.destinations.forEach(d => { d.price = ''; d.ticketPrice = ''; d.duration = ''; });
+      }
+      return { ...ADMIN_DEFAULT, ...parsed };
+    }
     catch(e) { return { ...ADMIN_DEFAULT }; }
   }
   return { ...ADMIN_DEFAULT };
@@ -179,16 +189,17 @@ function applyAdminData() {
             ${d.travelDate ? `
             <div class="dest-info-strip">
               <div class="dest-info-row"><span class="di-icon">📅</span><span><strong>Date:</strong> ${d.travelDate}</span></div>
-              <div class="dest-info-row"><span class="di-icon">🎫</span><span><strong>Ticket:</strong> ${d.ticketPrice}</span></div>
+              ${d.ticketPrice ? `<div class="dest-info-row"><span class="di-icon">🎫</span><span><strong>Ticket:</strong> ${d.ticketPrice}</span></div>` : ''}
               <div class="dest-info-row"><span class="di-icon">📞</span><span><strong>Phone:</strong> ${d.phone}</span></div>
               <div class="dest-info-row"><span class="di-icon">🚆</span><span><strong>Transport:</strong> ${d.transport}</span></div>
               <div class="dest-info-row"><span class="di-icon">🏢</span><span><strong>Office:</strong> ${d.office}</span></div>
             </div>` : ''}
             <div class="dest-footer">
+              ${d.duration || d.price ? `
               <div class="dest-meta">
-                <span>${d.duration}</span>
-                <span>From <strong>${d.price}</strong></span>
-              </div>
+                ${d.duration ? `<span>${d.duration}</span>` : ''}
+                ${d.price ? `<span>From <strong>${d.price}</strong></span>` : ''}
+              </div>` : ''}
               <button class="dest-btn" onclick="openModal('${d.name} Tour')">Explore →</button>
             </div>
           </div>
@@ -228,9 +239,8 @@ function applyAdminData() {
       <div class="pkg-card ${p.featured ? 'pkg-featured' : ''} reveal" id="pkg-${p.id}">
         ${p.badge ? `<div class="pkg-badge">${p.badge}</div>` : ''}
         <div class="pkg-tier">${p.tier}</div>
-        <div class="pkg-price"><sup>₹</sup>${p.price}<sub>/person</sub></div>
         <div class="pkg-name">${p.name}</div>
-        <div class="pkg-duration">${p.duration}</div>
+        ${p.duration ? `<div class="pkg-duration">${p.duration}</div>` : ''}
         <div class="pkg-divider"></div>
         <ul class="pkg-features">
           ${p.features.map(f => `<li class="feat-${f.type}">${f.text}</li>`).join('')}

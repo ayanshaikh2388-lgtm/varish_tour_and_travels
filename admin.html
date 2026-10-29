@@ -923,21 +923,21 @@
         stat3val: "29+", stat3label: "Years Experience"
       },
       destinations: [
-        { id: 'd1', name: 'Kashmir', img: 'kashmir.jpg', tag: '⭐ Most Popular', tagType: 'featured', rating: '4.9', highlights: 'Dal Lake · Gulmarg · Pahalgam', duration: '5–7 Days', price: '₹18,000' },
-        { id: 'd2', name: 'Jaisalmer', img: 'jaisalmer.jpg', tag: 'Desert', tagType: 'normal', rating: '4.8', highlights: 'Dunes · Fort · Camel Safari', duration: '3–5 Days', price: '₹12,000' },
+        { id: 'd1', name: 'Kashmir', img: 'kashmir.jpg', tag: '⭐ Most Popular', tagType: 'featured', rating: '4.9', highlights: 'Dal Lake · Gulmarg · Pahalgam', duration: '5–7 Days', price: '' },
+        { id: 'd2', name: 'Jaisalmer', img: 'jaisalmer.jpg', tag: 'Desert', tagType: 'normal', rating: '4.8', highlights: 'Dunes · Fort · Camel Safari', duration: '3–5 Days', price: '' },
         { id: 'd3', name: 'Saputara', img: 'saputara.jpg', tag: 'Hill Station', tagType: 'normal', rating: '4.7', highlights: 'Lake · Waterfalls · Sunrise', duration: '2–3 Days', price: '' },
         { id: 'd4', name: 'Mount Abu', img: 'mountabu.jpg', tag: 'Nature', tagType: 'normal', rating: '4.8', highlights: 'Nakki Lake · Dilwara Temple · Shikhar', duration: '2–4 Days', price: '' },
-        { id: 'd5', name: 'Simla', img: 'simla.jpg', tag: 'Hill Station', tagType: 'normal', rating: '4.8', highlights: 'Mall Road · Snowfall', duration: '3–5 Days', price: '₹10,000' },
-        { id: 'd6', name: 'Manali', img: 'manali.jpg', tag: 'Adventure', tagType: 'normal', rating: '4.9', highlights: 'Rohtang Pass · Solang Valley', duration: '4–6 Days', price: '₹12,000' },
-        { id: 'd7', name: 'Ajmer', img: 'ajmer.jpg', tag: 'Spiritual', tagType: 'normal', rating: '4.7', highlights: 'Dargah Sharif · Pushkar', duration: '2–3 Days', price: '₹5,000' },
-        { id: 'd8', name: 'Mumbai', img: 'mumbai.jpg', tag: 'City', tagType: 'normal', rating: '4.8', highlights: 'Gateway of India · Marine Drive', duration: '2–4 Days', price: '₹8,000' },
-        { id: 'd9', name: 'Goa', img: 'goa.jpg', tag: 'Beach', tagType: 'normal', rating: '4.9', highlights: 'Beaches · Nightlife', duration: '3–5 Days', price: '₹15,000' },
-        { id: 'd10', name: 'Kerala', img: 'kerala.jpg', tag: 'Nature', tagType: 'normal', rating: '4.9', highlights: 'Backwaters · Munnar', duration: '5–7 Days', price: '₹18,000' },
-        { id: 'd11', name: 'All Over India', img: 'india.jpg', tag: 'Tour', tagType: 'normal', rating: '5.0', highlights: 'Custom Packages Across India', duration: 'Custom', price: 'On Request' }
+        { id: 'd5', name: 'Simla', img: 'simla.jpg', tag: 'Hill Station', tagType: 'normal', rating: '4.8', highlights: 'Mall Road · Snowfall', duration: '3–5 Days', price: '' },
+        { id: 'd6', name: 'Manali', img: 'manali.jpg', tag: 'Adventure', tagType: 'normal', rating: '4.9', highlights: 'Rohtang Pass · Solang Valley', duration: '4–6 Days', price: '' },
+        { id: 'd7', name: 'Ajmer', img: 'ajmer.jpg', tag: 'Spiritual', tagType: 'normal', rating: '4.7', highlights: 'Dargah Sharif · Pushkar', duration: '2–3 Days', price: '' },
+        { id: 'd8', name: 'Mumbai', img: 'mumbai.jpg', tag: 'City', tagType: 'normal', rating: '4.8', highlights: 'Gateway of India · Marine Drive', duration: '2–4 Days', price: '' },
+        { id: 'd9', name: 'Goa', img: 'goa.jpg', tag: 'Beach', tagType: 'normal', rating: '4.9', highlights: 'Beaches · Nightlife', duration: '3–5 Days', price: '' },
+        { id: 'd10', name: 'Kerala', img: 'kerala.jpg', tag: 'Nature', tagType: 'normal', rating: '4.9', highlights: 'Backwaters · Munnar', duration: '5–7 Days', price: '' },
+        { id: 'd11', name: 'All Over India', img: 'india.jpg', tag: 'Tour', tagType: 'normal', rating: '5.0', highlights: 'Custom Packages Across India', duration: 'Custom', price: '' }
       ],
       packages: [
         {
-          id: 'p2', tier: 'Premium', name: 'Rajasthan Royal Combo', price: '3,500', duration: '8 Nights · 9 Days',
+          id: 'p2', tier: 'Premium', name: 'Rajasthan Royal Combo', price: '', duration: '8 Nights · 9 Days',
           badge: 'Best Value ✦', featured: true,
           features: [
             { text: 'Jaisalmer + Mount Abu', type: 'inc' },
@@ -950,7 +950,7 @@
           ]
         },
         {
-          id: 'p3', tier: 'Luxury', name: 'Kashmir Delight', price: '12,500', duration: '6 Nights · 7 Days',
+          id: 'p3', tier: 'Luxury', name: 'Kashmir Delight', price: '', duration: '6 Nights · 7 Days',
           badge: '', featured: false,
           features: [
             { text: 'Houseboat on Dal Lake', type: 'inc' },
@@ -1008,6 +1008,12 @@
       if (stored) {
         try {
           const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed.packages)) {
+            parsed.packages.forEach(p => { p.price = ''; });
+          }
+          if (Array.isArray(parsed.destinations)) {
+            parsed.destinations.forEach(d => { d.price = ''; });
+          }
           // Merge with defaults for any missing keys
           return { ...DEFAULT_DATA, ...parsed };
         } catch(e) {
@@ -1160,7 +1166,7 @@
           <div class="item-thumb"><img src="${d.img}" alt="${d.name}" onerror="this.style.display='none'" /></div>
           <div class="item-info">
             <div class="item-name">${d.name}</div>
-            <div class="item-meta">★ ${d.rating} · ${d.duration} · From ${d.price}</div>
+            <div class="item-meta">★ ${d.rating} · ${d.duration}${d.price ? ` · From ${d.price}` : ''}</div>
           </div>
           <div class="item-actions">
             <button class="btn btn-outline btn-sm" onclick="editDest(${i})">✏ Edit</button>
@@ -1293,7 +1299,7 @@
         <div class="item-card">
           <div class="item-info">
             <div class="item-name">${p.badge ? '✦ ' : ''}${p.name} (${p.tier})</div>
-            <div class="item-meta">₹${p.price}/person · ${p.duration} · ${p.features.length} features</div>
+            <div class="item-meta">${p.duration ? `${p.duration} · ` : ''}${p.features.length} features</div>
           </div>
           <div class="item-actions">
             <button class="btn btn-outline btn-sm" onclick="editPkg(${i})">✏ Edit</button>
