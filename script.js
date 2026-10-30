@@ -526,34 +526,18 @@ const modalClose    = document.getElementById('modalClose');
 const modalPkgName  = document.getElementById('modalPkgName');
 
 function openModal(packageName) {
-  if (modalPkgName) modalPkgName.textContent = packageName;
+  if (modalPkgName) modalPkgName.textContent = packageName || 'Tour Package';
   
-  // Pre-fill form if package is Kashmir or Jaisalmer
+  // Clear all inputs so modal fields remain blank for all packages
   const mName = document.getElementById('m-name');
   const mPhone = document.getElementById('m-phone');
   const mDate = document.getElementById('m-date');
   const mTravelers = document.getElementById('m-travelers');
 
-  if (packageName) {
-    const pkg = packageName.toLowerCase();
-    if (pkg.includes('kashmir')) {
-      if (mName) mName.value = 'nasir bhai chapple vale';
-      if (mPhone) mPhone.value = '9737703934';
-      if (mDate) mDate.value = '';
-      if (mTravelers) mTravelers.value = '3–5 Persons';
-    } else if (pkg.includes('jaisalmer')) {
-      if (mName) mName.value = 'nasir bhai chapple vale';
-      if (mPhone) mPhone.value = '9737703934';
-      if (mDate) mDate.value = '';
-      if (mTravelers) mTravelers.value = '3–5 Persons';
-    } else {
-      // Clear values for other packages
-      if (mName) mName.value = '';
-      if (mPhone) mPhone.value = '';
-      if (mDate) mDate.value = '';
-      if (mTravelers) mTravelers.value = '2 Persons'; // Default
-    }
-  }
+  if (mName) mName.value = '';
+  if (mPhone) mPhone.value = '';
+  if (mDate) mDate.value = '';
+  if (mTravelers) mTravelers.selectedIndex = 0;
 
   modalBackdrop.classList.add('open');
   document.body.style.overflow = 'hidden';
