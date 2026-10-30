@@ -507,6 +507,11 @@
           Packages
           <span class="link-badge" id="pkgCount">3</span>
         </button>
+        <button class="sidebar-link" onclick="showTab('videos', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          Tour Videos
+          <span class="link-badge" id="vidCount">8</span>
+        </button>
         <button class="sidebar-link" onclick="showTab('reviews', this)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           Reviews
@@ -527,9 +532,13 @@
       </nav>
 
       <div class="sidebar-bottom">
-        <a href="index.html" target="_blank">
+        <a href="index.html" target="_blank" style="margin-bottom: 6px;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           View Website →
+        </a>
+        <a href="videos.html" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          View Videos Page →
         </a>
       </div>
     </aside>
@@ -673,6 +682,25 @@
             <div class="panel-title">All Packages <span class="count" id="pkgListCount">0</span></div>
           </div>
           <div class="item-list" id="pkgList"></div>
+        </div>
+      </div>
+
+      <!-- ═══ VIDEOS TAB ═══ -->
+      <div class="tab-content" id="tab-videos">
+        <div class="page-header">
+          <div>
+            <h1>Tour & Palace Videos</h1>
+            <p class="page-desc">Destinations aur royal palaces ke videos add, edit ya delete karein (YouTube links supported)</p>
+          </div>
+          <button class="btn btn-gold" onclick="showVideoForm()">+ Add Video</button>
+        </div>
+
+        <div id="videoEditArea"></div>
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">All Videos <span class="count" id="videoListCount">0</span></div>
+          </div>
+          <div class="item-list" id="videoList"></div>
         </div>
       </div>
 
@@ -963,6 +991,16 @@
           ]
         }
       ],
+      videos: [
+        { id: 'v1', title: 'Kashmir Tour Special – Varish Tour & Travels Official Video', dest: 'kashmir', destName: 'Kashmir', tag: 'Dal Lake · Gulmarg Snow · Houseboat', duration: 'Official Reel 🎬', thumbnail: 'kashmir.jpg', videoUrl: 'https://www.instagram.com/varish_tours_and_travels/reel/DeoaH3LS5Ab/', desc: 'Hamara official Kashmir tour video dekhein – Dal Lake par Shikara ride, Gulmarg ki baraf, khoobsurat valleys aur unforgettable travel memories.' },
+        { id: 'v2', title: 'Jaisalmer – Desert Safari & Golden Fort (Sonar Qila)', dest: 'jaisalmer', destName: 'Jaisalmer', tag: 'Sam Dunes · Camel Safari · Fort', duration: '4K · 3:50', thumbnail: 'jaisalmer.jpg', videoUrl: 'https://www.youtube.com/embed/_IcyjkS8e3Q', desc: 'Golden sunsets over Thar Desert dunes, thrilling camel rides, royal camps with folk dance, and the magnificent living fort.' },
+        { id: 'v3', title: 'Saputara – Gujarat\'s Scenic Hill Station & Waterfalls', dest: 'saputara', destName: 'Saputara', tag: 'Saputara Lake · Sunset Point · Waterfalls', duration: 'HD · 3:15', thumbnail: 'saputara.jpg', videoUrl: 'https://www.youtube.com/embed/3PLD1t8hRPA', desc: 'Lush green valleys, mist-covered hills, scenic lake boating, and soothing monsoon waterfalls in the Dang forest.' },
+        { id: 'v4', title: 'Mount Abu – Nakki Lake & Ancient Dilwara Temples', dest: 'mountabu', destName: 'Mount Abu', tag: 'Nakki Lake · Guru Shikhar · Dilwara', duration: '4K · 4:10', thumbnail: 'mountabu.jpg', videoUrl: 'https://www.youtube.com/embed/_IcyjkS8e3Q', desc: 'Rajasthan\'s only hill station featuring peaceful Nakki Lake, world-famous marble Dilwara temples, and panoramic sunset viewpoints.' },
+        { id: 'v5', title: 'Manali & Solang Valley – Snow Adventures & Rohtang Pass', dest: 'manali', destName: 'Manali', tag: 'Solang Valley · Rohtang Pass · Beas River', duration: '4K · 5:00', thumbnail: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80', videoUrl: 'https://www.youtube.com/embed/3PLD1t8hRPA', desc: 'Thrilling snow activities in Solang Valley, snow gliding at Rohtang Pass, and scenic pine trails along the Beas River.' },
+        { id: 'v6', title: 'Goa – Golden Beaches, Coastal Heritage & Sunset Cruise', dest: 'goa', destName: 'Goa', tag: 'Calangute · Baga · Old Goa Heritage', duration: '4K · 3:30', thumbnail: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80', videoUrl: 'https://www.youtube.com/embed/_IcyjkS8e3Q', desc: 'Endless golden beaches, calming ocean waves, Portuguese architecture, water sports, and vibrant evening cruises.' },
+        { id: 'v7', title: 'Udaipur – City of Royal Palaces & Pichola Lake', dest: 'rajasthan', destName: 'Udaipur', tag: 'Lake Pichola · City Palace · Jag Mandir', duration: '4K · 4:45', thumbnail: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80', videoUrl: 'https://www.youtube.com/embed/3PLD1t8hRPA', desc: 'The Venice of the East with royal City Palace, sparkling Lake Pichola boat rides, and magnificent Rajput heritage.' },
+        { id: 'v8', title: 'Kerala – Emerald Backwaters Houseboat & Munnar Hills', dest: 'kerala', destName: 'Kerala', tag: 'Alleppey Houseboats · Munnar Tea Gardens', duration: '4K · 4:15', thumbnail: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80', videoUrl: 'https://www.youtube.com/embed/_IcyjkS8e3Q', desc: 'Tranquil houseboat cruises through emerald backwaters, rolling tea plantations of Munnar, and lush tropical beauty.' }
+      ],
       reviews: [
         { id: 'r1', name: 'Rajesh Patel', city: 'Ahmedabad, Gujarat', quote: 'The Kashmir trip was beyond anything I imagined. The houseboat on Dal Lake, the Gulmarg snow — every single detail was arranged flawlessly by Varish Travels. We\'ll be back!', rating: 5, avatarColor1: '#0c2f4e', avatarColor2: '#3498db', destImg: 'kashmir.jpg' },
         { id: 'r2', name: 'Priya & Keval Shah', city: 'Surat, Gujarat', quote: 'Jaisalmer desert camp under the stars — priceless. The camel safari at sunset was the highlight of our honeymoon. Varish handled everything perfectly!', rating: 5, avatarColor1: '#4a2000', avatarColor2: '#e8940a', destImg: 'jaisalmer.jpg' },
@@ -1014,6 +1052,9 @@
           if (Array.isArray(parsed.destinations)) {
             parsed.destinations.forEach(d => { d.price = ''; });
           }
+          if (!Array.isArray(parsed.videos) || parsed.videos.length === 0) {
+            parsed.videos = DEFAULT_DATA.videos;
+          }
           // Merge with defaults for any missing keys
           return { ...DEFAULT_DATA, ...parsed };
         } catch(e) {
@@ -1043,6 +1084,7 @@
       else if (tabName === 'hero') loadHero();
       else if (tabName === 'destinations') renderDests();
       else if (tabName === 'packages') renderPkgs();
+      else if (tabName === 'videos') renderVideosAdmin();
       else if (tabName === 'reviews') renderRevs();
       else if (tabName === 'about') loadAbout();
       else if (tabName === 'contact') loadContact();
@@ -1100,9 +1142,11 @@
       const d = getData();
       const dc = document.getElementById('destCount');
       const pc = document.getElementById('pkgCount');
+      const vc = document.getElementById('vidCount');
       const rc = document.getElementById('revCount');
       if (dc) dc.textContent = d.destinations.length;
       if (pc) pc.textContent = d.packages.length;
+      if (vc) vc.textContent = (d.videos || DEFAULT_DATA.videos || []).length;
       if (rc) rc.textContent = d.reviews.length;
     }
 
@@ -1449,6 +1493,154 @@
       document.getElementById('pkgEditArea').innerHTML = '';
       editingPkgId = null;
       tempPkgFeatures = [];
+    }
+
+    // ──────────────────────────────────────────
+    // VIDEOS
+    // ──────────────────────────────────────────
+    let editingVideoId = null;
+
+    function renderVideosAdmin() {
+      const list = document.getElementById('videoList');
+      const vids = data.videos || DEFAULT_DATA.videos || [];
+      document.getElementById('videoListCount').textContent = vids.length;
+
+      if (vids.length === 0) {
+        list.innerHTML = `<div class="empty-state"><p>Koi video nahi hai. "+ Add Video" se add karein.</p></div>`;
+        return;
+      }
+
+      list.innerHTML = vids.map((v, i) => `
+        <div class="item-card">
+          <div class="item-thumb"><img src="${v.thumbnail}" alt="${v.title}" onerror="this.src='hero-bg.jpg'" /></div>
+          <div class="item-info">
+            <div class="item-name">${v.title}</div>
+            <div class="item-meta">⭐ ${v.destName} · ${v.duration} · ${v.tag}</div>
+          </div>
+          <div class="item-actions">
+            <button class="btn btn-outline btn-sm" onclick="editVideo(${i})">✏ Edit</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteVideo(${i})">🗑</button>
+          </div>
+        </div>
+      `).join('');
+      updateCounts();
+    }
+
+    function showVideoForm(vid, index) {
+      editingVideoId = index !== undefined ? index : null;
+      const v = vid || { title: '', dest: 'kashmir', destName: 'Kashmir', tag: '', duration: '4K · 3:30', thumbnail: '', videoUrl: '', desc: '' };
+
+      document.getElementById('videoEditArea').innerHTML = `
+        <div class="edit-form">
+          <div class="edit-form-header">
+            <div class="edit-form-title">${editingVideoId !== null ? '✏ Edit' : '+ Add'} Tour Video</div>
+            <button class="btn btn-outline btn-sm" onclick="cancelVideoEdit()">✕ Cancel</button>
+          </div>
+          <div class="form-grid">
+            <div class="form-group full">
+              <label class="form-label">Video Title *</label>
+              <input class="form-input" id="vf-title" value="${v.title}" placeholder="e.g. Kashmir – Paradise on Earth & Gulmarg Snow" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Destination Filter Category</label>
+              <select class="form-select" id="vf-dest">
+                <option value="kashmir" ${v.dest==='kashmir'?'selected':''}>❄️ Kashmir</option>
+                <option value="jaisalmer" ${v.dest==='jaisalmer'?'selected':''}>🏜️ Jaisalmer</option>
+                <option value="saputara" ${v.dest==='saputara'?'selected':''}>🌲 Saputara</option>
+                <option value="mountabu" ${v.dest==='mountabu'?'selected':''}>⛰️ Mount Abu</option>
+                <option value="manali" ${v.dest==='manali'?'selected':''}>🏔️ Manali / Himachal</option>
+                <option value="goa" ${v.dest==='goa'?'selected':''}>🏖️ Goa</option>
+                <option value="rajasthan" ${v.dest==='rajasthan'?'selected':''}>🏰 Udaipur / Rajasthan</option>
+                <option value="kerala" ${v.dest==='kerala'?'selected':''}>🌴 Kerala</option>
+                <option value="other" ${v.dest==='other'?'selected':''}>✨ Other Destination</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Place / City Name *</label>
+              <input class="form-input" id="vf-destName" value="${v.destName}" placeholder="e.g. Kashmir, Jaisalmer, Udaipur" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Highlights Tag</label>
+              <input class="form-input" id="vf-tag" value="${v.tag}" placeholder="e.g. Dal Lake · Gulmarg · Pahalgam" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Duration Tag</label>
+              <input class="form-input" id="vf-duration" value="${v.duration}" placeholder="e.g. 4K · 4:20" />
+            </div>
+            <div class="form-group full">
+              <label class="form-label">YouTube Video URL or Embed Link *</label>
+              <input class="form-input" id="vf-videoUrl" value="${v.videoUrl}" placeholder="e.g. https://www.youtube.com/watch?v=... or embed link" />
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Thumbnail Image URL</label>
+              <input class="form-input" id="vf-thumbnail" value="${v.thumbnail}" placeholder="kashmir.jpg or image URL" />
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Short Description</label>
+              <textarea class="form-textarea" id="vf-desc" rows="2" placeholder="Video ka brief description...">${v.desc}</textarea>
+            </div>
+          </div>
+          <div class="edit-form-actions">
+            <button class="btn btn-gold" onclick="saveVideo()">💾 ${editingVideoId !== null ? 'Update' : 'Add'} Video</button>
+            <button class="btn btn-outline" onclick="cancelVideoEdit()">Cancel</button>
+          </div>
+        </div>
+      `;
+      document.getElementById('vf-title').focus();
+    }
+
+    function editVideo(i) {
+      showVideoForm(data.videos[i], i);
+    }
+
+    function deleteVideo(i) {
+      if (confirm(`"${data.videos[i].title}" ko delete karna hai?`)) {
+        data.videos.splice(i, 1);
+        saveData(data);
+        renderVideosAdmin();
+        showToast('🗑 Video deleted');
+      }
+    }
+
+    function cancelVideoEdit() {
+      document.getElementById('videoEditArea').innerHTML = '';
+      editingVideoId = null;
+    }
+
+    function saveVideo() {
+      const title = document.getElementById('vf-title').value.trim();
+      const videoUrl = document.getElementById('vf-videoUrl').value.trim();
+      if (!title || !videoUrl) {
+        showToast('⚠️ Video title aur YouTube URL zaroor daalein');
+        return;
+      }
+
+      if (!data.videos) data.videos = [...DEFAULT_DATA.videos];
+
+      const destSelect = document.getElementById('vf-dest');
+      const item = {
+        id: editingVideoId !== null ? data.videos[editingVideoId].id : 'v' + Date.now(),
+        title,
+        dest: destSelect.value,
+        destName: document.getElementById('vf-destName').value.trim() || destSelect.options[destSelect.selectedIndex].text,
+        tag: document.getElementById('vf-tag').value.trim(),
+        duration: document.getElementById('vf-duration').value.trim() || '4K Video',
+        videoUrl,
+        thumbnail: document.getElementById('vf-thumbnail').value.trim() || 'hero-bg.jpg',
+        desc: document.getElementById('vf-desc').value.trim()
+      };
+
+      if (editingVideoId !== null) {
+        data.videos[editingVideoId] = item;
+        showToast('✅ Video updated!');
+      } else {
+        data.videos.push(item);
+        showToast('✅ Video added successfully!');
+      }
+
+      saveData(data);
+      cancelVideoEdit();
+      renderVideosAdmin();
     }
 
     // ──────────────────────────────────────────

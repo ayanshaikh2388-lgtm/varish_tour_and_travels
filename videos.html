@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tour Videos & Palace Highlights | Varish Tour & Travels</title>
+  <meta name="description"
+    content="Watch breathtaking travel videos and drone highlights of Kashmir, Jaisalmer, Saputara, Mount Abu, Manali, and top palaces across India with Varish Tour & Travels." />
+  <meta name="keywords"
+    content="Kashmir travel video, Jaisalmer desert video, Saputara video, Mount Abu drone view, India tour videos" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ── HEADER ── -->
+  <header class="header scrolled" id="header">
+    <div class="header-container">
+      <a href="index.html#home" class="logo" id="logo-link">
+        <div class="logo-icon">
+          <img src="logo.jpg" alt="Varish Logo"
+            style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;" />
+        </div>
+        <div class="logo-text">
+          <span class="logo-brand">Varish</span>
+          <span class="logo-sub">Tour & Travels</span>
+        </div>
+      </a>
+
+      <nav class="nav" id="mainNav">
+        <a href="index.html#home" class="nav-link" id="nl-home">Home</a>
+        <a href="index.html#destinations" class="nav-link" id="nl-dest">Destinations</a>
+        <a href="index.html#packages" class="nav-link" id="nl-pkg">Packages</a>
+        <a href="videos.html" class="nav-link active" id="nl-videos">Videos 🎬</a>
+        <a href="index.html#about" class="nav-link" id="nl-about">About</a>
+        <a href="index.html#contact" class="nav-link" id="nl-contact">Contact</a>
+      </nav>
+
+      <div class="header-right">
+        <!-- Language Switcher -->
+        <div id="google_translate_element" class="lang-select"></div>
+
+        <a href="tel:+919898989097" class="header-phone" id="header-phone-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.37 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012.28 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+          </svg>
+          +91 98989 89097
+        </a>
+        <button class="btn-gold" id="headerBookBtn" onclick="openModal('General Tour Package')">Book a Trip</button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── HERO SECTION ── -->
+  <section class="videos-hero">
+    <div class="videos-hero-content">
+      <div class="videos-badge">
+        <span>🎬 Tour Video Gallery</span>
+      </div>
+      <h1>
+        Experience India in Motion<br />
+        <em>Watch Real Tour & Palace Videos</em>
+      </h1>
+      <p>
+        Kashmir ke snow-covered pahad, Jaisalmer ke golden sand dunes, Saputara ke jharne aur Mount Abu ke khoobsurat nazare — trip plan karne se pehle video me dekhein aur apna favourite place chunein.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── MAIN VIDEO GALLERY ── -->
+  <main class="section">
+    <div class="container">
+
+      <!-- Category Filter Pills -->
+      <div class="video-filter-bar" id="videoFilterBar">
+        <button class="vfilter-btn active" data-filter="all">🌟 All Places (सब जगह)</button>
+        <button class="vfilter-btn" data-filter="kashmir">❄️ Kashmir</button>
+        <button class="vfilter-btn" data-filter="jaisalmer">🏜️ Jaisalmer</button>
+        <button class="vfilter-btn" data-filter="saputara">🌲 Saputara</button>
+        <button class="vfilter-btn" data-filter="mountabu">⛰️ Mount Abu</button>
+        <button class="vfilter-btn" data-filter="manali">🏔️ Manali</button>
+        <button class="vfilter-btn" data-filter="goa">🏖️ Goa</button>
+        <button class="vfilter-btn" data-filter="rajasthan">🏰 Udaipur</button>
+        <button class="vfilter-btn" data-filter="kerala">🌴 Kerala</button>
+      </div>
+
+      <!-- Videos Grid -->
+      <div class="videos-grid" id="videosGrid">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+
+      <!-- Custom Plan Banner -->
+      <div class="custom-banner" style="margin-top: 40px;">
+        <div class="custom-banner-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        </div>
+        <div class="custom-banner-text">
+          <strong>Videos pasand aaye? Apna custom tour book karein!</strong>
+          <span>Hum aapke dates aur family/group ke mutabiq 100% personalized itinerary banate hain.</span>
+        </div>
+        <a href="index.html#contact" class="btn-gold" style="text-decoration:none; display:inline-flex; align-items:center;">Contact Us →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ── VIDEO PLAYER MODAL ── -->
+  <div class="video-player-modal" id="videoPlayerModal">
+    <div class="video-player-box" id="videoPlayerBox">
+      <button class="video-player-close" id="videoPlayerClose" aria-label="Close Video">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+      <div class="video-player-iframe-wrap" id="videoIframeWrap">
+        <iframe id="videoIframe" src="" title="Tour Video Player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="video-player-info">
+        <div>
+          <div class="video-player-dest" id="modalVideoDest">Kashmir · Dal Lake & Gulmarg</div>
+          <h3 class="video-player-title" id="modalVideoTitle">Kashmir Tour Special</h3>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+          <a id="modalExternalLink" href="#" target="_blank" rel="noopener" class="btn-book-tour" style="display:none; text-decoration:none;">
+            Watch on Instagram ↗
+          </a>
+          <button class="btn-gold" id="modalBookNowBtn">Book This Tour ✦</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BOOKING MODAL ── -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal-box" id="modalBox">
+      <button class="modal-close" id="modalClose" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+      <div class="modal-header">
+        <div class="modal-icon-wrap">
+          <img src="logo.jpg" alt="Varish Logo"
+            style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;" />
+        </div>
+        <h3 class="modal-title">Book Your Trip</h3>
+        <p class="modal-pkg" id="modalPkgName">Kashmir Tour</p>
+      </div>
+      <form id="modalForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="m-name">Full Name *</label>
+            <input type="text" id="m-name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="m-phone">Phone *</label>
+            <input type="tel" id="m-phone" placeholder="+91 XXXXX XXXXX" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="m-date">Travel Date</label>
+          <input type="date" id="m-date" />
+        </div>
+        <div class="form-group">
+          <label for="m-travelers">Travelers</label>
+          <select id="m-travelers">
+            <option>1 Person</option>
+            <option>2 Persons</option>
+            <option>3–5 Persons</option>
+            <option>6–10 Persons</option>
+            <option>Group (10+)</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-gold btn-submit" id="modalSubmitBtn">
+          <span id="modalSubmitText">Confirm Booking Request</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── TOAST ── -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ── WHATSAPP FLOAT ── -->
+  <a href="https://wa.me/919898989097" class="wa-float" id="waFloat" target="_blank" rel="noopener"
+    aria-label="WhatsApp">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+      <path
+        d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.856L0 24l6.335-1.525C8.05 23.447 9.992 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.846 0-3.597-.5-5.107-1.373l-.363-.214-3.76.906.946-3.659-.237-.378C2.51 15.666 2 13.9 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+    </svg>
+    <span class="wa-label">WhatsApp Us</span>
+  </a>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer" id="footer">
+    <div class="footer-main">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a href="index.html#home" class="logo">
+            <div class="logo-icon">
+              <img src="logo.jpg" alt="Varish Logo"
+                style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;" />
+            </div>
+            <div class="logo-text">
+              <span class="logo-brand">Varish</span>
+              <span class="logo-sub">Tour & Travels</span>
+            </div>
+          </a>
+          <p>Crafting extraordinary travel experiences across India since 2010. Your journey is our passion.</p>
+          <div class="social-links">
+            <a href="#" class="social-btn" id="sf-fb" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/varish_tour_and_travels" target="_blank" class="social-btn" id="sf-ig" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+            <a href="https://wa.me/919898989097" class="social-btn" id="sf-wa" aria-label="WhatsApp">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                <path
+                  d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.856L0 24l6.335-1.525C8.05 23.447 9.992 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.846 0-3.597-.5-5.107-1.373l-.363-.214-3.76.906.946-3.659-.237-.378C2.51 15.666 2 13.9 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Destinations</h5>
+          <ul>
+            <li><a href="index.html#destinations">Kashmir</a></li>
+            <li><a href="index.html#destinations">Jaisalmer</a></li>
+            <li><a href="index.html#destinations">Saputara</a></li>
+            <li><a href="index.html#destinations">Mount Abu</a></li>
+            <li><a href="index.html#destinations">Simla & Manali</a></li>
+            <li><a href="index.html#destinations">Goa</a></li>
+            <li><a href="index.html#destinations">All Over India</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#packages">Packages</a></li>
+            <li><a href="videos.html">Tour Videos 🎬</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li>+91 98989 89097</li>
+            <li>info@varishtravels.com</li>
+            <li>Gujarat, India</li>
+            <li>Mon–Sat: 9AM–7PM</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>© 2024 Varish Tour & Travels. All rights reserved.</span>
+        <span>Made with ❤️ in Gujarat, India</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── GOOGLE TRANSLATE SCRIPT ── -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,gu',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <!-- ── VIDEO GALLERY JAVASCRIPT ── -->
+  <script>
+    'use strict';
+
+    // Default Tour Videos
+    const DEFAULT_VIDEOS = [
+      {
+        id: 'v1',
+        title: 'Kashmir Tour Special – Varish Tour & Travels Official Video',
+        dest: 'kashmir',
+        destName: 'Kashmir',
+        tag: 'Dal Lake · Gulmarg Snow · Houseboat',
+        duration: 'Official Reel 🎬',
+        thumbnail: 'kashmir.jpg',
+        videoUrl: 'https://www.instagram.com/varish_tours_and_travels/reel/DeoaH3LS5Ab/',
+        desc: 'Hamara official Kashmir tour video dekhein – Dal Lake par Shikara ride, Gulmarg ki baraf, khoobsurat valleys aur unforgettable travel memories.'
+      },
+      {
+        id: 'v2',
+        title: 'Jaisalmer – Desert Safari & Golden Fort (Sonar Qila)',
+        dest: 'jaisalmer',
+        destName: 'Jaisalmer',
+        tag: 'Sam Dunes · Camel Safari · Fort',
+        duration: '4K · 3:50',
+        thumbnail: 'jaisalmer.jpg',
+        videoUrl: 'https://www.youtube.com/embed/_IcyjkS8e3Q',
+        desc: 'Golden sunsets over Thar Desert dunes, thrilling camel rides, royal camps with folk dance, and the magnificent living fort.'
+      },
+      {
+        id: 'v3',
+        title: 'Saputara – Gujarat\'s Scenic Hill Station & Waterfalls',
+        dest: 'saputara',
+        destName: 'Saputara',
+        tag: 'Saputara Lake · Sunset Point · Waterfalls',
+        duration: 'HD · 3:15',
+        thumbnail: 'saputara.jpg',
+        videoUrl: 'https://www.youtube.com/embed/3PLD1t8hRPA',
+        desc: 'Lush green valleys, mist-covered hills, scenic lake boating, and soothing monsoon waterfalls in the Dang forest.'
+      },
+      {
+        id: 'v4',
+        title: 'Mount Abu – Nakki Lake & Ancient Dilwara Temples',
+        dest: 'mountabu',
+        destName: 'Mount Abu',
+        tag: 'Nakki Lake · Guru Shikhar · Dilwara',
+        duration: '4K · 4:10',
+        thumbnail: 'mountabu.jpg',
+        videoUrl: 'https://www.youtube.com/embed/_IcyjkS8e3Q',
+        desc: 'Rajasthan\'s only hill station featuring peaceful Nakki Lake, world-famous marble Dilwara temples, and panoramic sunset viewpoints.'
+      },
+      {
+        id: 'v5',
+        title: 'Manali & Solang Valley – Snow Adventures & Rohtang Pass',
+        dest: 'manali',
+        destName: 'Manali',
+        tag: 'Solang Valley · Rohtang Pass · Beas River',
+        duration: '4K · 5:00',
+        thumbnail: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80',
+        videoUrl: 'https://www.youtube.com/embed/3PLD1t8hRPA',
+        desc: 'Thrilling snow activities in Solang Valley, snow gliding at Rohtang Pass, and scenic pine trails along the Beas River.'
+      },
+      {
+        id: 'v6',
+        title: 'Goa – Golden Beaches, Coastal Heritage & Sunset Cruise',
+        dest: 'goa',
+        destName: 'Goa',
+        tag: 'Calangute · Baga · Old Goa Heritage',
+        duration: '4K · 3:30',
+        thumbnail: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80',
+        videoUrl: 'https://www.youtube.com/embed/_IcyjkS8e3Q',
+        desc: 'Endless golden beaches, calming ocean waves, Portuguese architecture, water sports, and vibrant evening cruises.'
+      },
+      {
+        id: 'v7',
+        title: 'Udaipur – City of Royal Palaces & Pichola Lake',
+        dest: 'rajasthan',
+        destName: 'Udaipur',
+        tag: 'Lake Pichola · City Palace · Jag Mandir',
+        duration: '4K · 4:45',
+        thumbnail: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80',
+        videoUrl: 'https://www.youtube.com/embed/3PLD1t8hRPA',
+        desc: 'The Venice of the East with royal City Palace, sparkling Lake Pichola boat rides, and magnificent Rajput heritage.'
+      },
+      {
+        id: 'v8',
+        title: 'Kerala – Emerald Backwaters Houseboat & Munnar Hills',
+        dest: 'kerala',
+        destName: 'Kerala',
+        tag: 'Alleppey Houseboats · Munnar Tea Gardens',
+        duration: '4K · 4:15',
+        thumbnail: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80',
+        videoUrl: 'https://www.youtube.com/embed/_IcyjkS8e3Q',
+        desc: 'Tranquil houseboat cruises through emerald backwaters, rolling tea plantations of Munnar, and lush tropical beauty.'
+      }
+    ];
+
+    function getVideos() {
+      const stored = localStorage.getItem('varish_admin_data');
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed.videos) && parsed.videos.length > 0) {
+            // Ensure first video is the requested Kashmir reel
+            const hasKashmirReel = parsed.videos.some(v => v.videoUrl && v.videoUrl.includes('DeoaH3LS5Ab'));
+            if (!hasKashmirReel) {
+              return DEFAULT_VIDEOS;
+            }
+            return parsed.videos;
+          }
+        } catch (e) {}
+      }
+      return DEFAULT_VIDEOS;
+    }
+
+    let currentFilter = 'all';
+    let currentActiveVideo = null;
+
+    function renderVideos() {
+      const grid = document.getElementById('videosGrid');
+      const allVideos = getVideos();
+      const filtered = currentFilter === 'all'
+        ? allVideos
+        : allVideos.filter(v => v.dest === currentFilter);
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-muted);">
+            <p style="font-size: 18px; margin-bottom: 8px;">Is category me abhi koi video nahi hai.</p>
+            <button class="btn-gold" onclick="setFilter('all')">Sabhi Videos Dekhein</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(v => `
+        <div class="video-card">
+          <div class="video-thumb-wrap" onclick="playVideo('${v.id}')">
+            <img src="${v.thumbnail}" alt="${v.title}" class="video-thumb" onerror="this.src='hero-bg.jpg'" />
+            <div class="video-thumb-overlay">
+              <div class="video-play-btn" title="Play Video">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+            <span class="video-badge">⭐ ${v.destName}</span>
+            <span class="video-duration">▶ ${v.duration}</span>
+          </div>
+          <div class="video-info">
+            <h3 class="video-title" onclick="playVideo('${v.id}')">${v.title}</h3>
+            <div class="video-highlights">${v.tag}</div>
+            <p class="video-desc">${v.desc}</p>
+            <div class="video-actions">
+              <button class="btn-watch" onclick="playVideo('${v.id}')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                Watch Video
+              </button>
+              <button class="btn-book-tour" onclick="openModal('${v.destName} Tour')">
+                Book Trip →
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function setFilter(filter) {
+      currentFilter = filter;
+      document.querySelectorAll('.vfilter-btn').forEach(btn => {
+        if (btn.getAttribute('data-filter') === filter) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      renderVideos();
+    }
+
+    // Filter clicks
+    document.querySelectorAll('.vfilter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        setFilter(btn.getAttribute('data-filter'));
+      });
+    });
+
+    // Helper to format YouTube & Instagram embed URLs
+    function formatEmbedUrl(url) {
+      if (!url) return '';
+      // Instagram Reel or Post
+      const igMatch = url.match(/instagram\.com\/(?:[^\/]+\/)?(?:reel|p)\/([a-zA-Z0-9_-]+)/);
+      if (igMatch && igMatch[1]) {
+        return `https://www.instagram.com/reel/${igMatch[1]}/embed/`;
+      }
+      // YouTube
+      if (url.includes('embed/')) {
+        return url.includes('autoplay') ? url : (url.includes('?') ? url + '&autoplay=1' : url + '?autoplay=1');
+      }
+      const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+      if (match && match[1]) {
+        return `https://www.youtube-nocookie.com/embed/${match[1]}?autoplay=1&rel=0`;
+      }
+      return url;
+    }
+
+    // Play video in modal
+    function playVideo(id) {
+      const allVideos = getVideos();
+      const video = allVideos.find(v => v.id === id);
+      if (!video) return;
+
+      currentActiveVideo = video;
+      const modal = document.getElementById('videoPlayerModal');
+      const box = document.getElementById('videoPlayerBox');
+      const iframe = document.getElementById('videoIframe');
+      const title = document.getElementById('modalVideoTitle');
+      const dest = document.getElementById('modalVideoDest');
+      const extLink = document.getElementById('modalExternalLink');
+
+      const isInstagram = video.videoUrl && video.videoUrl.includes('instagram.com');
+      if (box) {
+        if (isInstagram) box.classList.add('is-reel');
+        else box.classList.remove('is-reel');
+      }
+
+      if (extLink) {
+        if (isInstagram) {
+          extLink.href = video.videoUrl;
+          extLink.style.display = 'inline-flex';
+        } else {
+          extLink.style.display = 'none';
+        }
+      }
+
+      if (title) title.textContent = video.title;
+      if (dest) dest.textContent = `${video.destName} · ${video.tag}`;
+      if (iframe) iframe.src = formatEmbedUrl(video.videoUrl);
+
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideoPlayer() {
+      const modal = document.getElementById('videoPlayerModal');
+      const iframe = document.getElementById('videoIframe');
+      if (iframe) iframe.src = '';
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      currentActiveVideo = null;
+    }
+
+    document.getElementById('videoPlayerClose').addEventListener('click', closeVideoPlayer);
+    document.getElementById('videoPlayerModal').addEventListener('click', e => {
+      if (e.target === document.getElementById('videoPlayerModal')) {
+        closeVideoPlayer();
+      }
+    });
+
+    document.getElementById('modalBookNowBtn').addEventListener('click', () => {
+      const destName = currentActiveVideo ? currentActiveVideo.destName : 'Tour';
+      closeVideoPlayer();
+      openModal(destName + ' Tour');
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeVideoPlayer();
+        closeModal();
+      }
+    });
+
+    /* ── BOOKING MODAL LOGIC ── */
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalClose    = document.getElementById('modalClose');
+    const modalPkgName  = document.getElementById('modalPkgName');
+
+    function openModal(packageName) {
+      if (modalPkgName) modalPkgName.textContent = packageName || 'Tour Package';
+      const mName = document.getElementById('m-name');
+      const mPhone = document.getElementById('m-phone');
+      const mDate = document.getElementById('m-date');
+      const mTravelers = document.getElementById('m-travelers');
+
+      if (mName) mName.value = '';
+      if (mPhone) mPhone.value = '';
+      if (mDate) mDate.value = '';
+      if (mTravelers) mTravelers.selectedIndex = 0;
+
+      modalBackdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modalBackdrop.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+    if (modalBackdrop) modalBackdrop.addEventListener('click', e => {
+      if (e.target === modalBackdrop) closeModal();
+    });
+
+    const modalForm = document.getElementById('modalForm');
+    if (modalForm) {
+      modalForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('m-name')?.value.trim();
+        const phone = document.getElementById('m-phone')?.value.trim();
+        if (!name || !phone) {
+          showToast('⚠️ Please fill in your name and phone number.');
+          return;
+        }
+        const btn = document.getElementById('modalSubmitBtn');
+        const txt = document.getElementById('modalSubmitText');
+        btn.disabled = true;
+        txt.textContent = 'Processing...';
+        setTimeout(() => {
+          closeModal();
+          showToast('✅ Booking request sent! We\'ll call you within 2 hours.');
+          modalForm.reset();
+          btn.disabled = false;
+          txt.textContent = 'Confirm Booking Request';
+        }, 1500);
+      });
+    }
+
+    /* ── HAMBURGER ── */
+    const hamburger = document.getElementById('hamburger');
+    const mainNav   = document.getElementById('mainNav');
+    if (hamburger && mainNav) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mainNav.classList.toggle('open');
+        document.body.style.overflow = mainNav.classList.contains('open') ? 'hidden' : '';
+      });
+    }
+
+    /* ── TOAST ── */
+    let toastTimer;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      if (!t) return;
+      clearTimeout(toastTimer);
+      t.textContent = msg;
+      t.classList.add('show');
+      toastTimer = setTimeout(() => t.classList.remove('show'), 3500);
+    }
+
+    // Initialize Video Gallery on Page Load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderVideos();
+    });
+  </script>
+</body>
+
+</html>
